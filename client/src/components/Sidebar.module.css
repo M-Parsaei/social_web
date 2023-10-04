@@ -1,0 +1,14 @@
+.sidebar-container{
+    margin: 1rem;
+    overflow-y: scroll;
+    height: 100%;
+    flex: 2;
+    background-color: red;
+}
+.sidebar-item{
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #fff;
+
+}
