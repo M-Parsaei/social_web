@@ -18,6 +18,45 @@ const Sidebar = () => {
             <li className={styles["sidebar-item"]}>
                 <BsFillBookmarkFill/>Bookmarks
             </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>            
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>            
+            <li className={styles["sidebar-item"]}>
+                <BsFillBookmarkFill/>Bookmarks
+            </li>
+
+
 
         </ul>  
     </div>
