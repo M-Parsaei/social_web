@@ -1,6 +1,7 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv')
 const express  = require ("express");
 const mongoose = require ("mongoose");
+const AuthRouter = require("./routes/AuthRouters");
 const helmet = require("helmet");
 const morgan = require("morgan");
 dotenv.config();
@@ -11,10 +12,7 @@ const app = express();
 app.use(helmet());
 app.use(morgan("common"));
 app.use(express.json());
-
-app.get("/", (req,res)=>{
-    res.send("Hello World");
-})
+app.use('/',AuthRouter);
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log("Connected to MongoDB")
