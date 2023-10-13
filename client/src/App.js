@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 
 
 function App() {
+  //TODO : fixing the routers later
   return (
     <Routes>
       <Route path="/" element={<Home/>}></Route>
