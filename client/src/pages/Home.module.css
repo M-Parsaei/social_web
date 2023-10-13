@@ -1,10 +1,10 @@
 .page-container{
     display: flex;
     width: 100%;
-    gap: 10px;
+    gap: 80px;
 }
 .page-component2{
-    flex: 2;
+    flex: 1.5;
     border-radius:20px;
     border: 2px solid red;
 }
