@@ -1,0 +1,24 @@
+.login-page{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container{
+    width: 60%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+.login-left-part{
+    flex: 1;
+    height: 100%;
+    background-color: antiquewhite;
+}
+.login-right-part{
+    flex: 1;
+    height: 100%;
+    background-color: rgb(49, 9, 98);
+}

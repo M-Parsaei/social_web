@@ -1,17 +1,19 @@
-const User = require("../model/user");
-const bcrypt = require("bcrypt");
-const router = require("express").Router;
 
-router.get("/:id", async(req,res)=>{
+const User = require("../model/user");
+
+module.exports.getUserContoller = async(req,res)=>{
     try{
         const user = await User.findById(req.params.id);
+        if (!user){
+            throw "User not found";
+        }
         res.status(200).json(user);
     }catch(err){
-        res.status(500).json(err);
+        res.status(500).json({err});
     }
-})
+}
 
-router.delete("/:id", async(req,res)=>{
+module.exports.deleteUserContoller = async(req,res)=>{
     if(req.body.userId == req.params.id || req.body.isAdmin){
     try{
         await User.findByIdAndDelete(req.params.id);
@@ -23,9 +25,9 @@ router.delete("/:id", async(req,res)=>{
 else{
     return res.status(403).json("You can only delete your account")
 }
-})
+}
 
-router.put("/:id", async(req,res)=>{
+module.exports.updateUserContoller = async(req,res)=>{
     if(req.body.userId == req.params.id || req.body.isAdmin){
         if(req.body.password){ //TODO: to be updated
             try{
@@ -45,4 +47,4 @@ router.put("/:id", async(req,res)=>{
         }
           
     }
-})
+}
