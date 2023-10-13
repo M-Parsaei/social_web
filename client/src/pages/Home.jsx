@@ -1,21 +1,20 @@
-import React from 'react';
+import React from "react";
 import styles from "./Home.module.css";
-import Sidebar from '../components/Sidebar'
+import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
-import Feed from '../components/Feed';
-import NavBar from '../components/NavBar';
+import Feed from "../components/Feed";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 export default function Home() {
   return (
     <>
-    <NavBar/>
-    <div className={styles["page-container"]}>
-    <Sidebar />
-    <Feed/>
-    <div className={styles["page-component2"]}>
-      world
-    </div>
-    </div>
+      <NavBar />
+      <div className={styles["page-container"]}>
+        <Sidebar />
+        <Feed />
+        <div className={styles["page-component2"]}>worsld</div>
+      </div>
+      <Footer/>
     </>
-
-  )
+  );
 }

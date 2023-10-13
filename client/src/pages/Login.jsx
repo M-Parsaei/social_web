@@ -1,7 +1,7 @@
-import React from 'react'
-
+import React from "react";
+import Curvyyy from "../components/Curvyyy";
 export default function Login() {
   return (
-    <div>Login</div>
-  )
+   <Curvyy/>
+  );
 }
