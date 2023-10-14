@@ -5,16 +5,19 @@ const AuthRouter = require("./routes/AuthRouters");
 const UserRouter = require("./routes/UserRouters");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const cors = require("cors");
 dotenv.config();
 
 const app = express();
 
 //Middleware
+app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(express.json());
 app.use('/user',UserRouter);
 app.use('/',AuthRouter);
+
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log("Connected to MongoDB")
