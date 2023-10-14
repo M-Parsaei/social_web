@@ -1,6 +1,13 @@
+.wave-container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
 #wave{
     transform: rotate("0deg");
-     transition: "0.3s"
+     transition: "0.3s";
+     width: 100%;
 }
 #wave-path{
     transform: translate(0, "0px");
