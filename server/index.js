@@ -7,6 +7,7 @@ const PostRouter = require("./routes/PostRouters");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
+const { authorizationContorller } = require('./controllers/AuthControllers');
 dotenv.config();
 
 const app = express();
@@ -16,8 +17,8 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(express.json());
-app.use('/user',UserRouter);
-app.use('/post',PostRouter)
+app.use('/user',authorizationContorller,UserRouter);
+app.use('/post',authorizationContorller,PostRouter)
 app.use('/',AuthRouter);
 
 

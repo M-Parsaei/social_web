@@ -3,8 +3,10 @@ import Curvyyy from "../components/Curvyyy";
 import styles from "./login.module.css";
 import { useRef } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "universal-cookie";
+import {useNavigate} from "react-router-dom";
+
 
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -12,6 +14,7 @@ export default function Login() {
   const passwordInputRef = useRef();
   const passwordCheckInputRef = useRef();
   const emailInputRef = useRef();
+  const navigate = useNavigate();
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
@@ -21,14 +24,14 @@ export default function Login() {
         email: textInputRef.current.value,
         password: passwordInputRef.current.value,
       })
-      .then(() => {
-        console.log(data);
+      .then((result) => {
+        const cookies = new Cookies();
+        cookies.set("TOKEN",result.data.token,{path:"/"});
+        navigate("/",{replace:true});
       })
       .catch((err) => {
         if (err.response) {
-          // if we get a reponse back like we got a status(500) back 
-          //toast(err.response.data.error);
-          toast("Wow so easy !");
+          alert("fuck fuck fuck");
         }
       });
   };
