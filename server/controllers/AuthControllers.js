@@ -35,7 +35,9 @@ const loginController = async(req,res,next)=>{
     }
     catch(error){
         console.log(error);
-        res.status(400).json({error});
+        error.name = ""; //to remove the "Error" word from the error message string 
+        const errorMessage = error.toString();
+        res.status(400).json({error: error.toString()});
     }
 }
 

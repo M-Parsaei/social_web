@@ -3,6 +3,7 @@ const express  = require ("express");
 const mongoose = require ("mongoose");
 const AuthRouter = require("./routes/AuthRouters");
 const UserRouter = require("./routes/UserRouters");
+const PostRouter = require("./routes/PostRouters");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -16,6 +17,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(express.json());
 app.use('/user',UserRouter);
+app.use('/post',PostRouter)
 app.use('/',AuthRouter);
 
 

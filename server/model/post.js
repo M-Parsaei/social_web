@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const PostSchema = new mongoose.Schema({
-    userId:{
+    user:{
         type: String,
         require: true
     },
@@ -11,7 +11,7 @@ const PostSchema = new mongoose.Schema({
     },
     desc:{
         type: String,
-        default: []
+        require: true
     },
     picture:{
         type:String,

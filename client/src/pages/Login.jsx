@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import Curvyyy from "../components/Curvyyy";
 import styles from "./login.module.css";
 import { useRef } from "react";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const textInputRef = useRef();
@@ -9,12 +13,34 @@ export default function Login() {
   const passwordCheckInputRef = useRef();
   const emailInputRef = useRef();
 
-
-  const loginSubmitHandler = (e) => {
+  const loginSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("you are logged in POS");
-    console.log(textInputRef.current.value);
-    console.log(passwordInputRef.current.value);
+    console.log("Pressed sign in button ");
+    const data = await axios
+      .post("http://localhost:4000/login", {
+        email: textInputRef.current.value,
+        password: passwordInputRef.current.value,
+      })
+      .then(() => {
+        console.log(data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          // if we get a reponse back like we got a status(500) back 
+          //toast(err.response.data.error);
+          toast("Wow so easy !");
+        }
+      });
+  };
+
+  const RegisterSubmitHandler = async (e) => {
+    e.preventDefault();
+    console.log("Pressed sign in button ");
+    const data = await axios.post("http://localhost:4000/login", {
+      email: textInputRef.current.value,
+      password: passwordInputRef.current.value,
+    });
+    console.log(data);
   };
 
   const ChangeFormHandler = (e) => {
@@ -34,11 +60,10 @@ export default function Login() {
     </form>
   );
 
-
   const registerForm = (
     <form
       className={styles["login-right-part-item-3"]}
-      onSubmit={loginSubmitHandler}
+      onSubmit={RegisterSubmitHandler}
     >
       <span>Username</span>
       <input type="text" ref={textInputRef}></input>

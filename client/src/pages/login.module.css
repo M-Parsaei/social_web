@@ -21,7 +21,7 @@
     border-bottom-left-radius: 20px;
     flex: 1;
     height: 100%;
-    background-color: var(--blue-color);
+    background-color: rgba(21, 0, 114, 0.349);
 }
 .login-right-part{
     flex: 1;
