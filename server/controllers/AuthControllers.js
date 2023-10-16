@@ -5,15 +5,11 @@ const jwt = require("jsonwebtoken");
 const authorizationContorller = async (req, res, next) => {
   try {
     // getting the jwt token from header
-    console.log("I am there") 
-    if (!req.headers.authorization){
+    const token = req.body.authorization
+    console.log(req)
+    if (!req.body.authorization){
         throw "no token found";
     }
-    const token = await req.headers.authorization.split(" ")[1];
-    /*if (!token){
-        console.log("yellow");
-        throw "no token found";
-    }*/
     const user = await jwt.verify(token,process.env.JWTSECRET);
     if (!user){
         throw "invalid token";
@@ -30,12 +26,14 @@ const authorizationContorller = async (req, res, next) => {
 const registerController = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
-    console.log(username);
     const salt = await bcrypt.genSalt(10);
     const hashpassword = await bcrypt.hash(password, salt);
     const user = new User({ username, email, password: hashpassword });
     const userdb = await user.save();
-    res.status(200).json({ userdb });
+    const token = jwt.sign({ userId: userdb._id }, process.env.JWTSECRET, {
+      expiresIn: "4h",
+    });
+    res.status(200).json({ email: userdb.email , token });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error });
@@ -57,7 +55,7 @@ const loginController = async (req, res, next) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWTSECRET, {
       expiresIn: "4h",
     });
-    res.status(200).json({ user, token });
+    res.status(200).json({ email, token });
   } catch (error) {
     console.log(error);
     error.name = ""; //to remove the "Error" word from the error message string

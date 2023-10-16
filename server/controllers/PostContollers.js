@@ -48,13 +48,15 @@ module.exports.deletePost = async (req,res) =>{
 module.exports.updatePost = (req,res) =>{
     
 }
-module.exports.getFeedPosts = (req,res) =>{
+module.exports.getFeedPosts = async (req,res) =>{
     try{
         const user = req.body.userId
         if (!user){
             throw "no such a user was found";
         }
         // TODO to be implemented 
+        const userPosts = await Post.find({userId:user});
+        res.status(200).json(userPosts);
     }
     catch(err){
         err.name="";

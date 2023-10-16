@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./svg.module.css";
-export default function Curvyyy() {
+export default function WavyBackground() {
   return (
     <div className={styles["wave-container"]}>
     <svg

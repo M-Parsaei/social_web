@@ -9,8 +9,8 @@ const Share = () => {
   return (
     <div className={styles["share-container"]}>
         <div className={styles["share-firstRow"]}>
-        <img className={styles["profile-img"]}src="profileImage.jpg" alt="profile_image"/>
-        <input className={styles["share-input"]}type="text" placeholder="What's in your mind?"/>
+        <img className={styles["profile-img"]} src="profileImage.jpg" alt="profile_image"/>
+        <input className={styles["share-input"]} type="text" placeholder="What's in your mind?"/>
         </div>
         
         <hr></hr>

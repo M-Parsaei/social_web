@@ -1,84 +1,22 @@
-import React, { useState } from "react";
-import Curvyyy from "../components/Curvyyy";
+import React, { useState,useRef } from "react";
+import WavyBackground from "../components/WavyBackground";
 import styles from "./login.module.css";
-import { useRef } from "react";
-import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
-import Cookies from "universal-cookie";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useSignIn } from "../hooks/useSignIn";
 
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const textInputRef = useRef();
   const passwordInputRef = useRef();
-  const passwordCheckInputRef = useRef();
-  const emailInputRef = useRef();
   const navigate = useNavigate();
+
+  const { signIn, error, isLoading } = useSignIn();
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("Pressed sign in button ");
-    const data = await axios
-      .post("http://localhost:4000/login", {
-        email: textInputRef.current.value,
-        password: passwordInputRef.current.value,
-      })
-      .then((result) => {
-        const cookies = new Cookies();
-        cookies.set("TOKEN",result.data.token,{path:"/"});
-        navigate("/",{replace:true});
-      })
-      .catch((err) => {
-        if (err.response) {
-          alert("fuck fuck fuck");
-        }
-      });
+    console.log("In the login submit handler");
+    await signIn(textInputRef.current.value,passwordInputRef.current.value)
   };
-
-  const RegisterSubmitHandler = async (e) => {
-    e.preventDefault();
-    console.log("Pressed sign in button ");
-    const data = await axios.post("http://localhost:4000/login", {
-      email: textInputRef.current.value,
-      password: passwordInputRef.current.value,
-    });
-    console.log(data);
-  };
-
-  const ChangeFormHandler = (e) => {
-    setIsLoginPage((s) => !s);
-  };
-
-  const loginForm = (
-    <form
-      className={styles["login-right-part-item-3"]}
-      onSubmit={loginSubmitHandler}
-    >
-      <span>Username or Email</span>
-      <input type="text" ref={textInputRef}></input>
-      <span>Password</span>
-      <input type="password" ref={passwordInputRef}></input>
-      <button type="submit">Sign in</button>
-    </form>
-  );
-
-  const registerForm = (
-    <form
-      className={styles["login-right-part-item-3"]}
-      onSubmit={RegisterSubmitHandler}
-    >
-      <span>Username</span>
-      <input type="text" ref={textInputRef}></input>
-      <span>Email</span>
-      <input type="email" ref={emailInputRef}></input>
-      <span>Password</span>
-      <input type="password" ref={passwordInputRef}></input>
-      <span>Retype password</span>
-      <input type="password" ref={passwordCheckInputRef}></input>
-      <button type="submit">Sign Up</button>
-    </form>
-  );
 
   return (
     <>
@@ -92,22 +30,31 @@ export default function Login() {
             <div className={styles["login-right-part-item-2"]}>
               <span>Welcome back to the Social web</span>
             </div>
-            {isLoginPage ? loginForm : registerForm}
+            <form
+              className={styles["login-right-part-item-3"]}
+              onSubmit={loginSubmitHandler}
+            >
+              <span>Username or Email</span>
+              <input type="text" ref={textInputRef}></input>
+              <span>Password</span>
+              <input type="password" ref={passwordInputRef}></input>
+              <button type="submit">Sign in</button>
+            </form>
             <div className={styles["login-right-part-item-4"]}>
               <span>
-                {isLoginPage ? "No account ?" : "Already have an account ?"}
+                No account ?
                 <span
-                  onClick={ChangeFormHandler}
+                  onClick={(e)=>{e.preventDefault(); navigate("/register",{replace:true})}}
                   className={styles["login-change-page-button"]}
                 >
-                  {isLoginPage ? " Sign Up" : " Sign In"}
+                 Sign Up
                 </span>
               </span>
             </div>
           </div>
         </div>
       </div>
-      <Curvyyy />
+      <WavyBackground/>
     </>
   );
 }
