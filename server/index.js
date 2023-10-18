@@ -14,9 +14,15 @@ const app = express();
 
 //Middleware
 app.use(cors());
-app.use(helmet());
+app.use(
+    helmet({
+      crossOriginResourcePolicy: false,
+    })
+  );
 app.use(morgan("common"));
 app.use(express.json());
+app.use(express.static('public'));
+
 app.use('/user',authorizationContorller,UserRouter);
 app.use('/post',authorizationContorller,PostRouter)
 app.use('/',AuthRouter);

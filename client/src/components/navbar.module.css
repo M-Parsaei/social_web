@@ -3,24 +3,22 @@
     height: 60px;
     width: 100%;
     display: flex;
-    background-color: var(--blue-color);
+    background-color: #1a1c1ea9;
+    backdrop-filter: blur(20px);
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1;
-}
-.nav-bar-left{
     color: whitesmoke;
-    flex: 2;
 }
 .nav-bar-left span{
     font-size: 24px;
     font-weight: 700;
-    margin-left: 15px;
+    margin-left: 50px;
 }
 .nav-bar-center{
-    flex: 3;
+    width: 30%;
     display: flex;
     align-items: center;
     height: 100%;
@@ -33,34 +31,38 @@
     width: 90%;
     height: 60%;
     border-radius: 5px;
-    background-color: whitesmoke;
+    border-bottom: #69696f solid 2px;
 }
 .nav-bar-react-icons{
-    color: black;
+    color: #69696f;
     font-size: 20px;
 }
 .nav-bar-center input{
+    color: white;
     outline: none;
     border: none;
     margin-left: 10px;
     width: calc(100% - 30px);
+    background: none;
 }
 .nav-bar-right{
     color: whitesmoke;
-    flex: 2;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    gap: 40px;
 }
 .nav-bar-icons > *{
-    margin-left: 15px;
-}
-.nav-bar-link > *{
     margin-left: 15px;
 }
 .nav-bar-right img{
     border-radius: 50%;
     object-fit: cover;
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+}
+.profile-info-nav{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }

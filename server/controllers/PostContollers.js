@@ -49,6 +49,7 @@ module.exports.updatePost = (req,res) =>{
     
 }
 module.exports.getFeedPosts = async (req,res) =>{
+    // TODO : FIX the contoller so we can also get freinds posts 
     try{
         const user = req.body.userId
         if (!user){

@@ -7,14 +7,13 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <NavBar />
       <div className={styles["page-container"]}>
         <Sidebar />
         <Feed />
         <div className={styles["page-component2"]}>worsld</div>
       </div>
-      <Footer/>
-    </>
+    </div>
   );
 }

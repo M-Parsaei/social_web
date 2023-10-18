@@ -3,6 +3,7 @@ import WavyBackground from "../components/WavyBackground";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "../hooks/useSignIn";
+import { motion } from "framer-motion";
 
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -21,14 +22,16 @@ export default function Login() {
   return (
     <>
       <div className={styles["login-page"]}>
-        <div className={styles["login-container"]}>
-          <div className={styles["login-left-part"]}>hmm</div>
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration: 3}} className={styles["login-container"]}>
+          <div className={styles["login-left-part"]}>
+            <img></img>
+            <div className={styles["login-right-part-item-2"]}>
+              <span>Welcome back to the Social web</span>
+            </div>
+          </div>
           <div className={styles["login-right-part"]}>
             <div className={styles["login-right-part-item-1"]}>
               <h2>Social web</h2>
-            </div>
-            <div className={styles["login-right-part-item-2"]}>
-              <span>Welcome back to the Social web</span>
             </div>
             <form
               className={styles["login-right-part-item-3"]}
@@ -52,9 +55,8 @@ export default function Login() {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-      <WavyBackground/>
     </>
   );
 }

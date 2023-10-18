@@ -5,14 +5,15 @@ const jwt = require("jsonwebtoken");
 const authorizationContorller = async (req, res, next) => {
   try {
     // getting the jwt token from header
-    const token = req.body.authorization
     console.log(req)
-    if (!req.body.authorization){
-        throw "no token found";
+    const { token } = req.headers;
+    if (!token) {
+      throw "no token found";
     }
-    const user = await jwt.verify(token,process.env.JWTSECRET);
-    if (!user){
-        throw "invalid token";
+    token = token.split(" ")[1];
+    const user = await jwt.verify(token, process.env.JWTSECRET);
+    if (!user) {
+      throw "invalid token";
     }
     req.body.userId = user.userId;
     next();
@@ -33,7 +34,7 @@ const registerController = async (req, res, next) => {
     const token = jwt.sign({ userId: userdb._id }, process.env.JWTSECRET, {
       expiresIn: "4h",
     });
-    res.status(200).json({ email: userdb.email , token });
+    res.status(200).json({ user:userdb, token });
   } catch (error) {
     console.log(error);
     res.status(400).json({ error });
@@ -55,7 +56,7 @@ const loginController = async (req, res, next) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWTSECRET, {
       expiresIn: "4h",
     });
-    res.status(200).json({ email, token });
+    res.status(200).json({ user, token });
   } catch (error) {
     console.log(error);
     error.name = ""; //to remove the "Error" word from the error message string
@@ -67,5 +68,5 @@ const loginController = async (req, res, next) => {
 module.exports = {
   registerController,
   loginController,
-  authorizationContorller
+  authorizationContorller,
 };
