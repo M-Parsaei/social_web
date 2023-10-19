@@ -1,4 +1,5 @@
 const Post = require("../model/post");
+const User = require("../model/user");
 
 module.exports.createPost = async (req,res) =>{
     try{
@@ -47,6 +48,21 @@ module.exports.deletePost = async (req,res) =>{
 }
 module.exports.updatePost = (req,res) =>{
     
+}
+module.exports.getAllPosts = async (req,res)=>{
+    try{
+        const userId = req.params.userId;
+        /*
+        const user = await User.findById(userId);
+        if (!user){
+            throw "no such user exists to find their posts..."
+        }*/
+        const posts = await Post.find({userId});
+        res.status(200).json({posts});
+    }
+    catch(error){
+        res.status(500).json({error: err.toString()});
+    }
 }
 module.exports.getFeedPosts = async (req,res) =>{
     // TODO : FIX the contoller so we can also get freinds posts 

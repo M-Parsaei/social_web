@@ -22,12 +22,10 @@ export const AuthContextProvider = (props)=>{
 
     useEffect(()=>{
         const userSaved = JSON.parse(sessionStorage.getItem("user"));
-        //console.log(userSaved);
         if (userSaved){
             dispatch({type: "LOGIN",payload: userSaved})
         }
     },[])
-    console.log('Authcontext state: ',state); // to see everytime is changed
     return (
         <AuthContext.Provider value={{...state,dispatch}}>
             {props.children}

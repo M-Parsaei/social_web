@@ -4,6 +4,7 @@
     display: flex;
     color: white;
     flex-direction: column;
+    width: 100%;
 }
 .profile-header-cover-image{
     z-index: 2;
@@ -16,8 +17,13 @@
     display: flex;
     position: absolute;
     top: 210px;
+    justify-content: space-between;
     align-items: flex-end;
     padding-bottom: 50px;
+}
+.profile-header-info-row-left-side{
+    display: flex;
+    align-items: flex-end;
 }
 .profile-header-user-image{
     z-index: 3;
@@ -32,4 +38,23 @@
     margin-left: 40px;
     display: flex;
     flex-direction: column;
+}
+.profile-header-info-row button{
+    font-size: 18px;
+    justify-self: flex-end;
+    background: #fca37d;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 10px;
+}
+.profile-header-info-row-right-side-buttons{
+    display: flex;
+    gap: 20px
+}
+.profile-header-info-row-right-side{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    align-items: flex-end;
+    gap: 20px;
 }

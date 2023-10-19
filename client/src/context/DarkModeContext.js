@@ -13,11 +13,6 @@ export const DarkModeContext = createContext();
 export const DarkModeContextProvider = (props) =>{
 
     const [state,dispatch]=useReducer(DarkModeReducer,true);
-
-    useEffect(()=>{
-        console.log("Dark mod is ?")
-        console.log(state)
-    },[state])
     return(
         <DarkModeContext.Provider value={{state,dispatch}}>
             {props.children}

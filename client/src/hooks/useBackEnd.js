@@ -20,8 +20,14 @@ export const useBackEnd = ()=>{
                     headers: {"Authorization" : `Bearer ${token}`}
                 }
             }
-            const {data} = await axiosCall(url,clientData,config);
-            return data
+            if (method != "get"){
+                const {data} = await axiosCall(url,clientData,config);
+                return data
+            }
+            else{
+                const {data} = await axiosCall(url,config);
+                return data
+            }
         }
         catch(err){
             console.log(err);
