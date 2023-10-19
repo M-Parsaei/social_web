@@ -19,9 +19,10 @@ export const AuthContextProvider = (props)=>{
         user:null,
         token: null
     })
+
     useEffect(()=>{
         const userSaved = JSON.parse(sessionStorage.getItem("user"));
-        console.log(userSaved);
+        //console.log(userSaved);
         if (userSaved){
             dispatch({type: "LOGIN",payload: userSaved})
         }

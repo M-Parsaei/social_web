@@ -2,7 +2,6 @@ import React from "react";
 import { BsSearch, BsBell, BsChatDots, BsPersonPlus } from "react-icons/bs";
 import styles from "./navbar.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
-import AccountDropMenu from "./AccountDropMenu";
 const backEndUrl = process.env.REACT_APP_BACKEND_URL;
 export default function NavBar() {
   const { user } = useAuthContext();
@@ -27,7 +26,6 @@ export default function NavBar() {
           <div className={styles["profile-info-nav"]}>
             <span className={styles["nav-user-name"]}>
               {user.username ? user.username + " ▾" : null}
-              <AccountDropMenu/>
             </span>
             <img
               src={

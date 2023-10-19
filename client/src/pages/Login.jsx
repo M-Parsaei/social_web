@@ -44,8 +44,8 @@ export default function Login() {
               className={styles["login-right-part-item-3"]}
               onSubmit={loginSubmitHandler}
             >
-              <span>Username or Email</span>
-              <input type="text" ref={textInputRef}></input>
+              <span>Email</span>
+              <input type="email" ref={textInputRef}></input>
               <span>Password</span>
               <input type="password" ref={passwordInputRef}></input>
               <button type="submit">Sign in</button>

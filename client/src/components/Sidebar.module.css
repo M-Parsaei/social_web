@@ -52,18 +52,27 @@
 }
 .item-five{
     border: #f1ced091 solid 2px ;
-    color: #eb5757;
+    color: #eb57d7;
 }
 .item-six{
     border: #b9e7ef91 solid 2px ;
     color: #0dbbd3;
 }
+.item-eight{
+    border: #efb9b991 solid 2px ;
+    color: #d30d0d;
+}
+.item-seven{
+    border: #e9efb991 solid 2px ;
+    color: #d0d30d;
+}
+/*
 .see-more-container{
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-}
+}*/
 .website-name-container , .following-container{
     display: flex;
     width: 100%;

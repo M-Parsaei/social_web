@@ -27,5 +27,21 @@ const errorVariant = {
     transition:{duration: 1}
   }
 }
+const listItemVariant ={
+  onHover:{
+    color: "#1a924d",
+    scale: 1.1,
+    originX: 0,
+    transition:{
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  exit:{
+    transition:{
+      duration: 1
+    }
+  }
+}
 
-export {logVariants,errorVariant};
+export {logVariants,errorVariant,listItemVariant};
