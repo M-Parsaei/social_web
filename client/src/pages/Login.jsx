@@ -1,32 +1,42 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import WavyBackground from "../components/WavyBackground";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "../hooks/useSignIn";
 import { motion } from "framer-motion";
+import { logVariants } from "../animations/Variants";
+import ErrorAlert from "../components/ErrorAlert";
 
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const textInputRef = useRef();
   const passwordInputRef = useRef();
   const navigate = useNavigate();
-
   const { signIn, error, isLoading } = useSignIn();
+
+
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
     console.log("In the login submit handler");
-    await signIn(textInputRef.current.value,passwordInputRef.current.value)
+    await signIn(
+      textInputRef.current.value.trim(),
+      passwordInputRef.current.value
+    );
   };
-
   return (
-    <>
+    <motion.div>
       <div className={styles["login-page"]}>
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration: 3}} className={styles["login-container"]}>
+        <motion.div
+          variants={logVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className={styles["login-container"]}
+        >
           <div className={styles["login-left-part"]}>
-            <img></img>
             <div className={styles["login-right-part-item-2"]}>
-              <span>Welcome back to the Social web</span>
+              <span>Welcome back to Social web!</span>
             </div>
           </div>
           <div className={styles["login-right-part"]}>
@@ -44,19 +54,23 @@ export default function Login() {
               <button type="submit">Sign in</button>
             </form>
             <div className={styles["login-right-part-item-4"]}>
-              <span>
+            {error? <ErrorAlert error={error}/> : <div style={{flex:1}}/>}
+              <span className={styles["login-no-account-row"]}>
                 No account ?
                 <span
-                  onClick={(e)=>{e.preventDefault(); navigate("/register",{replace:true})}}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/register", { replace: true });
+                  }}
                   className={styles["login-change-page-button"]}
                 >
-                 Sign Up
+                  Sign Up
                 </span>
               </span>
             </div>
           </div>
         </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 }

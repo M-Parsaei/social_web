@@ -20,6 +20,8 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     flex: 1;
+    justify-items: center;
+    align-items: center;
     height: 100%;
     background-color: #1a1c1ea9;
     backdrop-filter: blur(20px);
@@ -51,7 +53,12 @@
 }
 .login-right-part-item-4{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+.login-no-account-row{
     flex: 1;
 }
 .login-right-part-item-3{

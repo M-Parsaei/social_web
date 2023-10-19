@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const useBackEnd = ()=>{
-    const callBackEnd = async (url,data,token,method)=>{
+    const callBackEnd = async (url,clientData,token,method)=>{
         try{
             let axiosCall = axios.get
             method = method.toLowerCase();
@@ -20,9 +20,8 @@ export const useBackEnd = ()=>{
                     headers: {"Authorization" : `Bearer ${token}`}
                 }
             }
-            const {responseData} = await axiosCall(url,{fuck:"you"},config);
-
-            return responseData
+            const {data} = await axiosCall(url,clientData,config);
+            return data
         }
         catch(err){
             console.log(err);

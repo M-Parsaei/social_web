@@ -6,7 +6,7 @@ const authorizationContorller = async (req, res, next) => {
   try {
     // getting the jwt token from header
     console.log(req)
-    const { token } = req.headers;
+    let token= req.headers.authorization;
     if (!token) {
       throw "no token found";
     }

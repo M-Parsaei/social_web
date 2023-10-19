@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styles from "./Share.module.css";
 import {BiSolidPhotoAlbum} from "react-icons/bi"
 import {PiTagChevronFill} from "react-icons/pi"
 import {MdLocationPin} from "react-icons/md"
 import {PiSmileyFill} from "react-icons/pi";
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useBackEnd } from '../hooks/useBackEnd';
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
 
 const Share = () => {
-  const {user} = useAuthContext();
+  const {user,token} = useAuthContext();
+  const postText = useRef();
+  const {callBackEnd} = useBackEnd();
+
+  const shareHandler = async (event)=>{
+    const desc = postText.current.value;
+    if (!desc){
+        alert("empty post");
+        return;
+    }
+    event.preventDefault();
+    const result = await callBackEnd("/post/create",{desc},token,"POST");
+    console.log("hmm");
+    console.log(result);
+  }
+
   return (
     <div className={styles["share-container"]}>
         <div className={styles["share-top-container"]}>
@@ -17,7 +33,7 @@ const Share = () => {
             <img src={user.profilePic? backEndUrl + user.profilePic : backEndUrl + "/images/genericProfile.png"} alt="profile_image"/>
             </div>
             <div className={styles["share-input-container"]}>
-            <input type="text" placeholder="What's in your mind?"/>
+            <input ref={postText} type="text" placeholder="What's in your mind?"/>
             </div>
         </div> 
         <div className={styles["share-line-breaker"]}></div>
@@ -48,7 +64,7 @@ const Share = () => {
                     <span>Feelings</span>
                 </li>
             </ul> 
-            <button className={styles["share-button"]}>Share</button>
+            <button className={styles["share-button"]} onClick={shareHandler}>Share</button>
         </div>
       
     </div>

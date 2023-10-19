@@ -3,6 +3,8 @@ import WavyBackground from "../components/WavyBackground";
 import styles from "./login.module.css";
 import { useSignUp } from "../hooks/useSignUp";
 import {useNavigate} from "react-router-dom";
+import {motion} from "framer-motion";
+import { logVariants } from "../animations/Variants";
 
 // TODO : add the code in RegisterSubmitHandler when retyped password is not same as password
 // and handling other errors like when the user was already registered, invalid email ....
@@ -22,9 +24,12 @@ export default function Register() {
   };
 
   return (
-    <>
+    <motion.div>
       <div className={styles["login-page"]}>
-        <div className={styles["login-container"]}>
+        <motion.div variants={logVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit" className={styles["login-container"]}>
           <div className={styles["login-left-part"]}></div>
           <div className={styles["login-right-part"]}>
             <div className={styles["login-right-part-item-1"]}>
@@ -59,8 +64,8 @@ export default function Register() {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 }
