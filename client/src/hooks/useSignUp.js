@@ -7,22 +7,22 @@ export const useSignUp = ()=>{
     const [isLoading,setIsLoading] = useState(null);
     const {dispatch} = useAuthContext()
 
-    const signup = async (username,email,password)=>{
+    const signup = async (username,email,password,retypedPassword)=>{
         setIsLoading(true)
         setError(null)
         try{
-            const {data} = await axios.post('/register',{username,email,password});
+            const {data} = await axios.post('/register',{username,email,password,retypedPassword});
 
             console.log(data);
 
             // save the token to local storage
             sessionStorage.setItem('user',JSON.stringify(data))
-            // updating the authContext
             dispatch({type: 'LOGIN', payload: {token: data.token, user: data.user}})
         }
         catch(err){
-            setError(err)
-            console.log(err)
+            setError(err.response.data.error)
+            console.log("error catch part in sign up hook");
+            console.log(err.response.data)
         }
         finally{
             setIsLoading(false);

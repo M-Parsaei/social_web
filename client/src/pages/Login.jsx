@@ -35,9 +35,6 @@ export default function Login() {
           className={styles["login-container"]}
         >
           <div className={styles["login-left-part"]}>
-            <div className={styles["login-right-part-item-2"]}>
-              <span>Welcome back to Social web!</span>
-            </div>
           </div>
           <div className={styles["login-right-part"]}>
             <div className={styles["login-right-part-item-1"]}>
@@ -64,7 +61,7 @@ export default function Login() {
                   }}
                   className={styles["login-change-page-button"]}
                 >
-                  Sign Up
+                  {" Sign Up"}
                 </span>
               </span>
             </div>

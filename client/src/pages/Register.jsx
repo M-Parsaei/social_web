@@ -5,6 +5,7 @@ import { useSignUp } from "../hooks/useSignUp";
 import {useNavigate} from "react-router-dom";
 import {motion} from "framer-motion";
 import { logVariants } from "../animations/Variants";
+import ErrorAlert from "../components/ErrorAlert";
 
 // TODO : add the code in RegisterSubmitHandler when retyped password is not same as password
 // and handling other errors like when the user was already registered, invalid email ....
@@ -20,7 +21,8 @@ export default function Register() {
 
   const RegisterSubmitHandler = async (e) => {
     e.preventDefault();
-    await signup(textInputRef.current.value,emailInputRef.current.value, passwordInputRef.current.value);
+    await signup(textInputRef.current.value,emailInputRef.current.value,
+       passwordInputRef.current.value,passwordCheckInputRef.current.value);
   };
 
   return (
@@ -34,9 +36,6 @@ export default function Register() {
           <div className={styles["login-right-part"]}>
             <div className={styles["login-right-part-item-1"]}>
               <h2>Social web</h2>
-            </div>
-            <div className={styles["login-right-part-item-2"]}>
-              <span>Welcome back to the Social web</span>
             </div>
             <form
               className={styles["login-right-part-item-3"]}
@@ -53,13 +52,14 @@ export default function Register() {
               <button type="submit">Sign Up</button>
             </form>
             <div className={styles["login-right-part-item-4"]}>
+            {error? <ErrorAlert error={error}/> : <div style={{flex:1}}/>}
               <span>
                 Already have an account ?
                 <span
                   onClick={(e)=>{e.preventDefault(); navigate("/login",{replace:true})}}
                   className={styles["login-change-page-button"]}
                 >
-                  Sign In
+                  {" Sign In"}
                 </span>
               </span>
             </div>

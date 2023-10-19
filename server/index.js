@@ -26,6 +26,9 @@ app.use(express.static('public'));
 app.use('/user',authorizationContorller,UserRouter);
 app.use('/post',authorizationContorller,PostRouter)
 app.use('/',AuthRouter);
+app.use('*',(req,res)=>{
+  res.status(404).json({error: "404 error"})
+})
 
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>{

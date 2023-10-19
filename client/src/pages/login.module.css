@@ -43,15 +43,11 @@
     align-items: center;
     flex: 1;
 }
-.login-right-part-item-2{
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
 .login-right-part-item-3{
     flex: 3;
 }
 .login-right-part-item-4{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +84,8 @@
     border: none;
     padding: 10px;
     width: 150px;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: white;
 }
 .login-right-part-item-4 span{

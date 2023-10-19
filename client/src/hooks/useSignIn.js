@@ -16,7 +16,6 @@ export const useSignIn = ()=>{
             console.log(data);
             // save the token to local storage
             sessionStorage.setItem('user',JSON.stringify(data))
-            // updating the authContext
             dispatch({type: 'LOGIN', payload: {token: data.token, user: data.user}})
         }
         catch(err){
