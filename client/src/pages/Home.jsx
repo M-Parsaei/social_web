@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { useBackEnd } from '../hooks/useBackEnd';
 
 
-
 export default function Home() {
   const {user,token} = useAuthContext();
   const [posts,setPosts]=useState([]);
