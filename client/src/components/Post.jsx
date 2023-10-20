@@ -14,11 +14,8 @@ export default function Post({desc,image,commentor}) {
   const commentRef = useRef();
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
-    console.log(chosenEmoji);
     setShowPicker(false);
   }
-  console.log("The image is :")
-  console.log(backEndUrl + "images/posts/" + image);
   return (
     <div className={styles["post-container"]}>
       <div className={styles["post-top-row"]}>
