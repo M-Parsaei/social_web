@@ -1,20 +1,53 @@
-import React from "react";
 import styles from "./Home.module.css";
 import Sidebar from "../components/Sidebar";
-import Post from "../components/Post";
-import Feed from "../components/Feed";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import ProfileHeader from "../components/ProfileHeader";
+import Post from "../components/Post";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect, useState } from "react";
+import { useBackEnd } from '../hooks/useBackEnd';
+import Share from "../components/Share";
+
+
 export default function Home() {
+  const {user,token} = useAuthContext();
+  const [posts,setPosts]=useState([]);
+  const {callBackEnd} = useBackEnd();
+  useEffect(()=>{
+    const func = async () =>{
+      const result =await callBackEnd(`post/${user._id.toString()}/getAll`,{},token,"get");
+      setPosts(result.posts);
+    };
+    func()
+  },[])
   return (
-    <>
+    <div>
+      <NavBar />
+      <div className={styles["page-container"]}>
+        <Sidebar />
+        <div className={styles["profile-right-container"]}>
+        <ProfileHeader/>
+        <div className={styles["profile-page-user-posts-container"]}>
+          <Share/>
+        {posts.map((post)=>{return<Post key={post._id} desc={post.desc} image={post.picture} commentor={user.profilePic} />})}
+        </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+/*
+        <div className={styles["under-profile-header-container"]}>
+          <Feed />
+          <Rightbar/>
+        </div>*/
+
+/*
+    <div>
       <NavBar />
       <div className={styles["page-container"]}>
         <Sidebar />
         <Feed />
         <div className={styles["page-component2"]}>worsld</div>
       </div>
-      <Footer/>
-    </>
-  );
-}
+    </div>*/

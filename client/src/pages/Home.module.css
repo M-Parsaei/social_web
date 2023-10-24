@@ -2,10 +2,20 @@
 .page-container{
     display: flex;
     width: 100%;
-    gap: 80px;
 }
-.page-component2{
-    flex: 1.5;
-    border-radius:20px;
-    border: 2px solid red;
+.under-profile-header-container{
+    margin-top: 170px;
+    display: flex;
+}
+.profile-right-container{
+    display: flex;
+    flex: 4.5;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-page-user-posts-container{
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

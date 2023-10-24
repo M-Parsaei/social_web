@@ -1,23 +1,31 @@
-import Share from "./components/Share";
-import Sidebar from "./components/Sidebar";
+import axios from "axios";
+import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
+import Register from "./pages/Register";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence,motion } from "framer-motion";
+import PageNotFound from "./pages/PageNotFound";
 
-import styles from "./index.css";
-import { Route, Routes } from "react-router-dom";
-
+// TODO: refactoring ok - add comments later 
 
 function App() {
-  //TODO : fixing the routers later
+  const location = useLocation()
+  const {user} = useAuthContext()
+
+  // setting the base url for axios calls to the backend 
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL
   return (
-    <Routes>
-      <Route path="/" element={<Home/>}></Route>
-      <Route path="/Login" element={<Login/>}></Route>
-      <Route path="/Register" element={<SignUp/>}></Route>
-      <Route path="/Profile" element={<Profile/>}></Route>
-    </Routes>
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.key}>
+          <Route path="/profile" element={user? <Profile /> : <Navigate to="/login" />}></Route>
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
+          <Route path="/register" element={!user? <Register /> : <Navigate to="/"/>}></Route>
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}></Route>
+          <Route path="*" element={PageNotFound} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

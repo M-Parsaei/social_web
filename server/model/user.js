@@ -3,14 +3,15 @@ const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema({
     username:{
         type: String,
-        require: true,
-        unique: true,
+        required: [true,"please provide an username"],
+        unique: [true,"this username is already taken "],
         max: 15,
     },
     email:{
         type: String,
-        require: true,
-        unique: true,
+        required: [true, 'email is required'],
+        match: [/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'please provide a valid email format'],
+        unique: [true,"please provide an email"]
     },
     profilePic:{
         type: String,
@@ -18,8 +19,8 @@ const UserSchema = new mongoose.Schema({
     },
     password:{
         type: String ,
-        require: true,
-        min: 4,
+        required: [true, "please provide a password"],
+        min: [4, "password must have at least 4 letters"]
     },
     followers:{
         type: Array,

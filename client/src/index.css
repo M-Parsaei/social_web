@@ -5,3 +5,17 @@
   margin: 0;
   padding: 0;
 }
+body{
+  background-size: 200% 200%;
+  background-image: radial-gradient(at center top, #27435D, #3B0331);
+  animation: gradientAnimation 2s ease-in-out 0s infinite forwards;
+  animation-direction: alternate;
+}
+@keyframes gradientAnimation {
+  0%{
+      background-position: 100%  0%;
+  }
+  100%{
+      background-position: 0%  100%;
+  }
+}

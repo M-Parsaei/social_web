@@ -3,20 +3,38 @@ const express  = require ("express");
 const mongoose = require ("mongoose");
 const AuthRouter = require("./routes/AuthRouters");
 const UserRouter = require("./routes/UserRouters");
+const PostRouter = require("./routes/PostRouters");
+const UploadRouter = require("./routes/UploadRouters");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
+const { authorizationContorller } = require('./controllers/AuthControllers');
 dotenv.config();
 
 const app = express();
 
 //Middleware
 app.use(cors());
-app.use(helmet());
+app.use(
+    helmet({
+      crossOriginResourcePolicy: false,
+    })
+  );
 app.use(morgan("common"));
 app.use(express.json());
-app.use('/user',UserRouter);
+app.use(express.static('public'));
+
+
+
+
+
+app.use('/user',authorizationContorller,UserRouter);
+app.use('/post',authorizationContorller,PostRouter)
+app.use('/upload',authorizationContorller,UploadRouter);
 app.use('/',AuthRouter);
+app.use('*',(req,res)=>{
+  res.status(404).json({error: "404 error"})
+})
 
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>{

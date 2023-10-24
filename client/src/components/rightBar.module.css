@@ -1,0 +1,8 @@
+.right-bar-container{
+    background-color: #1a1c1ea9;
+    backdrop-filter: blur(20px);
+    height: calc(100vh - 60px);
+    flex: 1.5;
+    position: sticky;
+    top: 60px;
+}
