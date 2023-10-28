@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import styles from "./Share.module.css";
+import { Spinner } from '@chakra-ui/react'
 import {BiSolidPhotoAlbum} from "react-icons/bi"
 import {PiTagChevronFill} from "react-icons/pi"
 import {MdLocationPin} from "react-icons/md"
@@ -13,6 +14,7 @@ import { use } from "react-router-dom";
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
 
 const Share = ({setRefresh}) => {
+  const [isLoading, setIsLoading] = useState(false);
   const {user,token} = useAuthContext();
   const [showPicker, setShowPicker] = useState(false);
   const [postImage,setPostImage] = useState(null);
@@ -51,6 +53,7 @@ const submitHandler = async (e) => {
 
 
   const shareHandler = async (event)=>{
+    setIsLoading(!isLoading);
     event.preventDefault();
     const desc = postText.current.value;
     let imageName = null;
@@ -79,11 +82,18 @@ const submitHandler = async (e) => {
         data.picture = imageName;
     }
     // TODO try catch
-    const result = await callBackEnd("/post/create",data,token,"POST");
-    console.log(result);
-    setRefresh(s=>!s)
-  }
-
+    setTimeout(async()=>{
+        const result = await callBackEnd("/post/create",data,token,"POST");
+        console.log(result); 
+        setRefresh(s=>!s)
+        setIsLoading(s => !s);
+    }, 2000)
+}
+if(isLoading){
+    return <div className={styles["share-container"]} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='white.500' size='xl'/> 
+        </div>
+}
   return (
     <div className={styles["share-container"]}>
         <div className={styles["share-top-container"]}>
@@ -138,6 +148,7 @@ const submitHandler = async (e) => {
         </div>
       
     </div>
+    
   )
 }
 
