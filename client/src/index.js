@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
 import { DarkModeContextProvider } from "./context/DarkModeContext";
+import { ChakraProvider } from "@chakra-ui/react";
 
 // TODO: refactoring ok - add comments later 
 
@@ -14,7 +15,9 @@ root.render(
     <DarkModeContextProvider>
     <AuthContextProvider>
       <BrowserRouter>
-        <App />
+      <ChakraProvider>
+        <App/>
+      </ChakraProvider>
       </BrowserRouter>
     </AuthContextProvider>
     </DarkModeContextProvider>
