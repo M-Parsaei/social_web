@@ -33,6 +33,9 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.post-description p{
+    width: 100%;
+}
 .post-description img{
     margin-top: 10px;
     border-radius: 5px;
@@ -61,6 +64,7 @@
     font-size: 15px;
 }
 .post-icon-container{
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

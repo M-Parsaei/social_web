@@ -20,6 +20,7 @@ export default function Post({post,setRefresh}) {
   const commentRef = useRef();
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
+  const [liked,setIsLiked]=useState(false);
 
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
@@ -39,6 +40,18 @@ export default function Post({post,setRefresh}) {
     finally{
       setShowThreeDot(s=>!s);
       setRefresh(s=>!s);
+    }
+  }
+
+  const likeHandler = async (e) =>{
+    e.preventDefault();
+    try{
+      const result = await callBackEnd(`/post/like/${post._id}`,{},token,"post");
+      setIsLiked(result.isLiked)
+    }
+    catch(err){
+      console.log("in the likeHandler");
+      console.log(err);
     }
   }
 
@@ -76,9 +89,9 @@ export default function Post({post,setRefresh}) {
           : null }
       </div>
       <div className={styles["post-bottom-row"]}>
-          <div className={styles["post-icon-container"]}>
+          <div className={styles["post-icon-container"]} onClick={likeHandler}>
             <AiFillHeart className={`${styles['post-icons']} ${styles['heart-icons']}`} />
-            <span>1.2k</span>
+            <span>{post.liked.length + (liked? 1 : 0)}</span>
           </div>
           <div className={styles["post-icon-container"]}>
             <FaCommentDots className={`${styles['post-icons']} ${styles['comment-icons']}`} />
