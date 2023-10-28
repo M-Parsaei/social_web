@@ -69,7 +69,6 @@ const submitHandler = async (e) => {
             formData.append("image", postImage);
             imageName = fileName
             await callBackEnd("/upload/postImage",formData,token,"POST")
-            //await axios.post("/upload/postImage",)
         }
         catch(err){
             console.log("in share Handler post image part error:");

@@ -46,8 +46,7 @@ const upload = multer({
       cb(null, { fieldName: "TESTING_METADATA" });
     },
     key: function (req, file, cb) {
-      const imageExtension = file.originalname.split('.').pop()
-      cb(null, `${Date.now().toString()}.${imageExtension}`);
+      cb(null, req.body.name);
     },
   }),
 });
