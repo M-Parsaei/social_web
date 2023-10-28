@@ -38,7 +38,7 @@ export default function Home() {
         <ProfileHeader/>
         <div className={styles["profile-page-user-posts-container"]}>
           <Share setRefresh={setRefresh}/>
-        {posts.map((post)=>{return<Post key={post._id} post={post}/>})}
+        {posts.map((post)=>{return<Post key={post._id} post={post} setRefresh={setRefresh}/>})}
         </div>
         </div>
       </div>

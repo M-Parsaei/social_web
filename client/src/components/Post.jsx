@@ -8,11 +8,13 @@ import {BsThreeDotsVertical,BsFillShareFill} from "react-icons/bs";
 import EmojiPicker from 'emoji-picker-react';
 import { useBackEnd } from "../hooks/useBackEnd";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { format} from 'timeago.js';
+
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
 
 
-export default function Post({post}) {
+export default function Post({post,setRefresh}) {
   const [showPicker, setShowPicker] = useState(false);
   const [showThreeDot, setShowThreeDot] = useState(false);
   const commentRef = useRef();
@@ -34,6 +36,10 @@ export default function Post({post}) {
       console.log("in the deletePostHandler")
       console.log(err)
     }
+    finally{
+      setShowThreeDot(s=>!s);
+      setRefresh(s=>!s);
+    }
   }
 
   return (
@@ -43,7 +49,7 @@ export default function Post({post}) {
           <img src="/assets/dummyData/profileImage1.jpg" alt="profile picture" />
           <div className={styles["post-name-date"]}>
             <span>John Carter</span>
-            <span className={styles["post-time"]}>4 hours ago</span>
+            <span className={styles["post-time"]}>{format(post.createdAt)}</span>
           </div>
         </div>
         <div className={styles["post-three-dots"]}>
