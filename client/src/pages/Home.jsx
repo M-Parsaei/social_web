@@ -7,6 +7,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
 import { useBackEnd } from '../hooks/useBackEnd';
 import Share from "../components/Share";
+import { ChakraProvider } from "@chakra-ui/react";
 
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <div>
       <NavBar />
+      <ChakraProvider>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
@@ -34,6 +36,7 @@ export default function Home() {
         </div>
         </div>
       </div>
+      </ChakraProvider>
     </div>
   );
 }

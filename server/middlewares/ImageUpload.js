@@ -46,7 +46,7 @@ const upload = multer({
       cb(null, { fieldName: "TESTING_METADATA" });
     },
     key: function (req, file, cb) {
-      cb(null, Date.now().toString());
+      cb(null, req.body.name);
     },
   }),
 });

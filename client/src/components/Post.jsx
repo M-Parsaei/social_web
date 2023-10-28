@@ -35,7 +35,7 @@ export default function Post({desc,image,commentor}) {
           {desc}</p>
           
           {image? 
-          <img src={backEndUrl + "/images/posts/" + image} 
+          <img src={`https://social-web-project.s3.us-east-2.amazonaws.com/${image}`} 
           alt="post image"/>
           : null }
       </div>
