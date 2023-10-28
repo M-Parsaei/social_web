@@ -31,7 +31,11 @@ module.exports.deletePost = async (req,res) =>{
         const postId = req.params.postId;
         const post = await Post.findById(postId);
         const userId = req.body.userId;
-        if (post.user !== userId){
+        if (post.userId !== userId){
+            console.log("user id")
+            console.log(userId)
+            console.log("post user")
+            console.log(post.userId)
             throw "you are not allowed to remove this post";
         }
         if (!post){
@@ -40,9 +44,9 @@ module.exports.deletePost = async (req,res) =>{
         await post.deleteOne();
         res.status(200).json({post});
     }
-    catch{
-        err.name="";
-        res.status(500).json({err: err.toString()});
+    catch(error){
+        error.name="";
+        res.status(500).json({error: error.toString()});
     }
 }
 module.exports.updatePost = (req,res) =>{

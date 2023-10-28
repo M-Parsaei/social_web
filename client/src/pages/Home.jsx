@@ -17,8 +17,14 @@ export default function Home() {
   const {callBackEnd} = useBackEnd();
   useEffect(()=>{
     const func = async () =>{
-      const result =await callBackEnd(`post/${user._id.toString()}/getAll`,{},token,"get");
-      setPosts(result.posts);
+      try{
+        const result =await callBackEnd(`post/${user._id.toString()}/getAll`,{},token,"get");
+        setPosts(result.posts);
+      }
+      catch(err){
+        console.log("in the use effect of Home");
+        console.log(err)
+      }
     };
     func()
   },[refresh])
@@ -32,7 +38,7 @@ export default function Home() {
         <ProfileHeader/>
         <div className={styles["profile-page-user-posts-container"]}>
           <Share setRefresh={setRefresh}/>
-        {posts.map((post)=>{return<Post key={post._id} desc={post.desc} image={post.picture} commentor={user.profilePic} />})}
+        {posts.map((post)=>{return<Post key={post._id} post={post}/>})}
         </div>
         </div>
       </div>
@@ -40,18 +46,3 @@ export default function Home() {
     </div>
   );
 }
-/*
-        <div className={styles["under-profile-header-container"]}>
-          <Feed />
-          <Rightbar/>
-        </div>*/
-
-/*
-    <div>
-      <NavBar />
-      <div className={styles["page-container"]}>
-        <Sidebar />
-        <Feed />
-        <div className={styles["page-component2"]}>worsld</div>
-      </div>
-    </div>*/

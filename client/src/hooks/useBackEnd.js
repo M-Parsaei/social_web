@@ -20,7 +20,7 @@ export const useBackEnd = ()=>{
                     headers: {"Authorization" : `Bearer ${token}`}
                 }
             }
-            if (method != "get"){
+            if (method != "get" && method != "delete"){
                 const {data} = await axiosCall(url,clientData,config);
                 return data
             }
