@@ -37,7 +37,15 @@ const Sidebar = () => {
                     <MdGroups className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
-                    Freinds
+                    Following
+                </span>
+            </motion.li>
+            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+                <div className={`${styles["sidebar-icon-container"]} ${styles["item-three"]}`}>
+                    <MdGroups className={styles["sidebar-icons"]}/>
+                </div>
+                <span>
+                    Followers
                 </span>
             </motion.li>
             <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>

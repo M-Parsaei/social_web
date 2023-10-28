@@ -15,7 +15,6 @@ export default function Login() {
   const { signIn, error, isLoading } = useSignIn();
 
 
-
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
     console.log("In the login submit handler");

@@ -12,6 +12,7 @@ import Share from "../components/Share";
 export default function Home() {
   const {user,token} = useAuthContext();
   const [posts,setPosts]=useState([]);
+  const [refresh,setRefresh] = useState(false);
   const {callBackEnd} = useBackEnd();
   useEffect(()=>{
     const func = async () =>{
@@ -19,7 +20,7 @@ export default function Home() {
       setPosts(result.posts);
     };
     func()
-  },[])
+  },[refresh])
   return (
     <div>
       <NavBar />
@@ -28,7 +29,7 @@ export default function Home() {
         <div className={styles["profile-right-container"]}>
         <ProfileHeader/>
         <div className={styles["profile-page-user-posts-container"]}>
-          <Share/>
+          <Share setRefresh={setRefresh}/>
         {posts.map((post)=>{return<Post key={post._id} desc={post.desc} image={post.picture} commentor={user.profilePic} />})}
         </div>
         </div>

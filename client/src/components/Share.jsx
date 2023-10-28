@@ -8,10 +8,11 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useBackEnd } from '../hooks/useBackEnd';
 import EmojiPicker from 'emoji-picker-react';
 import axios from 'axios';
+import { use } from "react-router-dom";
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
 
-const Share = () => {
+const Share = ({setRefresh}) => {
   const {user,token} = useAuthContext();
   const [showPicker, setShowPicker] = useState(false);
   const [postImage,setPostImage] = useState(null);
@@ -77,9 +78,10 @@ const submitHandler = async (e) => {
     if (imageName){
         data.picture = imageName;
     }
+    // TODO try catch
     const result = await callBackEnd("/post/create",data,token,"POST");
-    console.log("hmm");
     console.log(result);
+    setRefresh(s=>!s)
   }
 
   return (
