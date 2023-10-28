@@ -91,7 +91,7 @@ const submitHandler = async (e) => {
             <img src={user.profilePic? backEndUrl + user.profilePic : backEndUrl + "/images/genericProfile.png"} alt="profile_image"/>
             </div>
             <div className={styles["share-input-container"]}>
-            <input ref={postText} type="text" placeholder="What's in your mind?"/>
+            <textarea ref={postText} type="text" placeholder="What's in your mind?" contentEditable="true"/>
             </div>
         </div> 
         <div className={styles["share-line-breaker"]}></div>
