@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./post.module.css";
 import {AiFillHeart} from 'react-icons/ai';
 import {FaCommentDots} from 'react-icons/fa';
@@ -9,6 +9,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { useBackEnd } from "../hooks/useBackEnd";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { format} from 'timeago.js';
+import Comment from "./Comment";
 
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
@@ -21,11 +22,28 @@ export default function Post({post,setRefresh}) {
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
   const [liked,setIsLiked]=useState(false);
+  const [allcomments,setAllComments]=useState(null);
 
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
     setShowPicker(false);
   }
+
+  const getAllComments = async(e)=>{
+    e.preventDefault();
+    try{
+      if (!allcomments){
+        setAllComments((await callBackEnd("comment/post/6530e40b5c58f83322ee982b",{},token,"get")).comments);
+      }
+      else{
+        setAllComments(null);
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
 
   const deletePostHandler = async (e) =>{
     e.preventDefault()
@@ -93,7 +111,7 @@ export default function Post({post,setRefresh}) {
             <AiFillHeart className={`${styles['post-icons']} ${styles['heart-icons']}`} />
             <span>{post.liked.length + (liked? 1 : 0)}</span>
           </div>
-          <div className={styles["post-icon-container"]}>
+          <div className={styles["post-icon-container"]} onClick={getAllComments}>
             <FaCommentDots className={`${styles['post-icons']} ${styles['comment-icons']}`} />
             <span>1.2k</span>
           </div>
@@ -123,7 +141,16 @@ export default function Post({post,setRefresh}) {
           </div>
           <button>send</button>
       </div>
-      
+      {allcomments != null? 
+        <div className={styles['post-comment-section']}>
+          {allcomments.map(comment=><Comment desc={comment.desc}/>)}
+          <div>
+          ▾ Load more comments
+          </div>
+        </div>
+        :
+        null
+      }
     </div>
   );
 }

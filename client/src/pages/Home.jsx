@@ -31,7 +31,6 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <ChakraProvider>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
@@ -42,7 +41,6 @@ export default function Home() {
         </div>
         </div>
       </div>
-      </ChakraProvider>
     </div>
   );
 }
