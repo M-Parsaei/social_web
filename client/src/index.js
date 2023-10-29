@@ -12,7 +12,6 @@ import { ChakraBaseProvider,extendTheme } from "@chakra-ui/react";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ChakraBaseProvider resetCSS={false} >
     <DarkModeContextProvider>
     <AuthContextProvider>
       <BrowserRouter>
@@ -20,6 +19,5 @@ root.render(
       </BrowserRouter>
     </AuthContextProvider>
     </DarkModeContextProvider>
-    </ChakraBaseProvider>
   </React.StrictMode>
 );

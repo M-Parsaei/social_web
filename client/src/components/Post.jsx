@@ -157,7 +157,7 @@ export default function Post({post,setRefresh}) {
       </div>
       {allcomments.length > 0? 
         <div className={styles['post-comment-section']}>
-          {allcomments.map(comment=><Comment desc={comment.desc}/>)}
+          {allcomments.map(comment=><Comment desc={comment.desc} userId={comment.userId} time={format(comment.createdAt)}/>)}
           <div>
           ▾ Load more comments
           </div>

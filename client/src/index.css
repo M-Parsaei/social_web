@@ -7,7 +7,7 @@
 }
 body{
   background-size: 200% 200%;
-  background-image: radial-gradient(at center top, #173c33, #0c010a);
+  background-image: radial-gradient(at center top, #142831, #000000);
   animation: gradientAnimation 2s ease-in-out 0s infinite forwards;
   animation-direction: alternate;
 }

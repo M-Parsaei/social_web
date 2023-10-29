@@ -31,7 +31,7 @@ app.use(express.static('public'));
 
 app.use('/user',UserRouter);
 app.use('/post',PostRouter)
-app.use('/upload',authorizationContorller,UploadRouter);
+app.use('/upload',UploadRouter);
 app.use('/comment',CommentRouter);
 app.use('/',AuthRouter);
 app.use('*',(req,res)=>{

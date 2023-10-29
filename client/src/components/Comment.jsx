@@ -5,13 +5,18 @@ import { useBackEnd } from "../hooks/useBackEnd";
 
 export default function Comment({ userId, desc, time }) {
   const [user, setUser] = useState(null);
-  const [profilePic, setProfilePic] = useState(null);
+  const [profile, setProfile] = useState(null);
   const {callBackEnd} = useBackEnd();
 
 
   useEffect(() => {
     // getting the user's name and profile pic
-    callBackEnd(`user/${userId}`,{},token)
+    const getUser = async ()=>{
+        const {username,profilePic}= await callBackEnd(`user/${userId}`,{},{},"get");
+        setProfile(profilePic);
+        setUser(username);
+    }
+    getUser();
   }, []);
   return (
     <div className={styles["comment-container"]}>
@@ -22,8 +27,8 @@ export default function Comment({ userId, desc, time }) {
           alt="profile picture"
         />
         <div className={styles["comment-time-container"]}>
-          <span>username</span>
-          <span>4 hours ago</span>
+          <span>{user}</span>
+          <span>{time}</span>
         </div>
       </div>
       <p>{desc}</p>

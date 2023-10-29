@@ -7,14 +7,13 @@ export const useSignUp = ()=>{
     const [isLoading,setIsLoading] = useState(null);
     const {dispatch} = useAuthContext()
 
-    const signup = async (username,email,password,retypedPassword)=>{
+    const signup = async (newUserData)=>{
         setIsLoading(true)
         setError(null)
         try{
-            const {data} = await axios.post('/register',{username,email,password,retypedPassword});
-
+            //
+            const {data} = await axios.post('/register',newUserData);
             console.log(data);
-
             // save the token to local storage
             sessionStorage.setItem('user',JSON.stringify(data))
             dispatch({type: 'LOGIN', payload: {token: data.token, user: data.user}})
