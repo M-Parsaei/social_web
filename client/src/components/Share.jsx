@@ -12,7 +12,7 @@ import axios from 'axios';
 import { use } from "react-router-dom";
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
-
+const S3Bucket = process.env.REACT_APP_S3_LINK
 const Share = ({setRefresh}) => {
   const [isLoading, setIsLoading] = useState(false);
   const {user,token} = useAuthContext();
@@ -97,7 +97,8 @@ if(isLoading){
     <div className={styles["share-container"]}>
         <div className={styles["share-top-container"]}>
             <div className={styles["share-image-container"]}>
-            <img src={user.profilePic? backEndUrl + user.profilePic : backEndUrl + "/images/genericProfile.png"} alt="profile_image"/>
+            <img src={user.profilePic? `${S3Bucket}${user.profilePic}` 
+            : `${S3Bucket}genericProfile.png`} alt="profile_image"/>
             </div>
             <div className={styles["share-input-container"]}>
             <textarea ref={postText} type="text" placeholder="What's in your mind?" contentEditable="true"/>

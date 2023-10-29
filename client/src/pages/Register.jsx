@@ -9,6 +9,7 @@ import { useBackEnd } from "../hooks/useBackEnd";
 
 // TODO : add the code in RegisterSubmitHandler when retyped password is not same as password
 // and handling other errors like when the user was already registered, invalid email ....
+const S3Bucket = process.env.REACT_APP_S3_LINK
 
 export default function Register() {
   const navigate = useNavigate()
@@ -22,14 +23,13 @@ export default function Register() {
 
   const RegisterSubmitHandler = async (e) => {
     e.preventDefault();
-    let imageName = null;
+    let fileName = null;
     if (profileImage){
       try{
           const formData = new FormData();
-          const fileName = "profile_pic_" + Date.now() + profileImage.name;
+          fileName = "profile_pic_" + Date.now() + profileImage.name;
           formData.append("name", fileName);
           formData.append("image", profileImage);
-          imageName = fileName
           await callBackEnd("/upload/postImage",formData,{},"POST")
       }
       catch(err){
@@ -44,9 +44,10 @@ export default function Register() {
     password: passwordInputRef.current.value,
     retypedPassword: passwordCheckInputRef.current.value,
   };
-  if (imageName){
-        data.profilePic = imageName;
+  if (fileName){
+        data.profilePic = fileName;
   }
+    console.log(data);
     await signup(data);
   };
 
@@ -65,7 +66,7 @@ export default function Register() {
           exit="exit" className={styles["login-container"]}>
           <div className={styles["register-left-part"]}>
             <img 
-            src={profileImage? URL.createObjectURL(profileImage) :"/assets/dummyData/profileImage1.jpg"}
+            src={profileImage? URL.createObjectURL(profileImage) : `${S3Bucket}genericProfile.png`}
             alt="register profile picture"/>
             <label htmlFor="register-upload-image">
               <span>Pick your profile image</span>

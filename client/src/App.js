@@ -19,11 +19,10 @@ function App() {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.key}>
-          <Route path="/profile" element={user? <Profile /> : <Navigate to="/login" />}></Route>
-          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
-          <Route path="/register" element={!user? <Register /> : <Navigate to="/"/>}></Route>
+          <Route path="/register" element={!user? <Register /> : <Profile/>}></Route>
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}></Route>
-          <Route path="*" element={PageNotFound} />
+          <Route path="/profile/:userId" element={<Profile/>}></Route>
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
       </Routes>
     </AnimatePresence>
   );

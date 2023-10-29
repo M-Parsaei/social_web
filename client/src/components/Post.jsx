@@ -13,9 +13,10 @@ import Comment from "./Comment";
 
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
-
+const S3Bucket = process.env.REACT_APP_S3_LINK;
 
 export default function Post({post,setRefresh}) {
+  console.log(backEndUrl);
   const [showPicker, setShowPicker] = useState(false);
   const [showThreeDot, setShowThreeDot] = useState(false);
   const commentRef = useRef();
@@ -116,7 +117,7 @@ export default function Post({post,setRefresh}) {
           {post.desc}</p>
           
           {post.picture? 
-          <img src={`https://social-web-project.s3.us-east-2.amazonaws.com/${post.picture}`} 
+          <img src={`${S3Bucket}${post.picture}`} 
           alt="post image"/>
           : null }
       </div>
