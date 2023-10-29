@@ -32,10 +32,6 @@ module.exports.deletePost = async (req,res) =>{
         const post = await Post.findById(postId);
         const userId = req.body.userId;
         if (post.userId !== userId){
-            console.log("user id")
-            console.log(userId)
-            console.log("post user")
-            console.log(post.userId)
             throw "you are not allowed to remove this post";
         }
         if (!post){
@@ -88,19 +84,22 @@ module.exports.likePost = async (req,res) =>{
         const postId = req.params.postId;
         const post = await Post.findById(postId);
         const userId = req.body.userId; 
+        let isLiked = false;
         if (!post){
             throw "no such a post was found";
         }
-        console.log(post);
+        //console.log(post);
+        console.log(userId);
         if (post.liked.includes(userId)){
             // user has already liked this post
-            post.liked = post.liked.filter((e)=>{e!=user});
+            post.liked = post.liked.filter((e)=>{e!=userId});
+            isLiked=true;
         }
         else{
             post.liked.push(userId);
         }
         await post.save();
-        res.status(200).json({post});
+        res.status(200).json({isLiked});
     }
     catch(err){
         err.name=""

@@ -31,18 +31,16 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      <ChakraProvider>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
         <ProfileHeader/>
         <div className={styles["profile-page-user-posts-container"]}>
           <Share setRefresh={setRefresh}/>
-        {posts.map((post)=>{return<Post key={post._id} post={post}/>})}
+        {posts.map((post)=>{return<Post key={post._id} post={post} setRefresh={setRefresh}/>})}
         </div>
         </div>
       </div>
-      </ChakraProvider>
     </div>
   );
 }

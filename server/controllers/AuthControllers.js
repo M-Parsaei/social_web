@@ -28,8 +28,7 @@ const authorizationContorller = async (req, res, next) => {
 
 const registerController = async (req, res, next) => {
   try {
-    const { username, email, password, retypedPassword } = req.body;
-    console.log(passwordStrength("fuck9@A_"))
+    const {password, retypedPassword } = req.body;
     if (!password){
       throw "Please provide a password"
     }
@@ -41,7 +40,9 @@ const registerController = async (req, res, next) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hashpassword = await bcrypt.hash(password, salt);
-    const user = new User({ username, email, password: hashpassword });
+    const data = req.body;
+    data.password=hashpassword;
+    const user = new User(data);
     const userdb = await user.save();
     const token = jwt.sign({ userId: userdb._id }, process.env.JWTSECRET, {
       expiresIn: "4h",

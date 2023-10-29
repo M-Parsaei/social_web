@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./post.module.css";
 import {AiFillHeart} from 'react-icons/ai';
 import {FaCommentDots} from 'react-icons/fa';
@@ -8,21 +8,57 @@ import {BsThreeDotsVertical,BsFillShareFill} from "react-icons/bs";
 import EmojiPicker from 'emoji-picker-react';
 import { useBackEnd } from "../hooks/useBackEnd";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { format} from 'timeago.js';
+import Comment from "./Comment";
+
 
 const backEndUrl = process.env.REACT_APP_BACKEND_URL
+const S3Bucket = process.env.REACT_APP_S3_LINK;
 
-
-export default function Post({post}) {
+export default function Post({post,setRefresh}) {
+  console.log(backEndUrl);
   const [showPicker, setShowPicker] = useState(false);
   const [showThreeDot, setShowThreeDot] = useState(false);
   const commentRef = useRef();
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
+  const [liked,setIsLiked]=useState(false);
+  const [allcomments,setAllComments]=useState([]);
 
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
     setShowPicker(false);
   }
+
+  const getAllComments = async(e)=>{
+    e.preventDefault();
+    try{
+      if (allcomments.length === 0){
+        setAllComments((await callBackEnd(`comment/post/${post._id}`,{},token,"get")).comments);
+      }
+      else{
+        setAllComments([]);
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
+  const sendComment =  async (e)=>{
+    e.preventDefault();
+    console.log("in send comment handler ");
+    try{
+      const {savedComment} = await callBackEnd(`comment/create/${post._id}`,{desc:commentRef.current.value},token,"post");
+      commentRef.current.value="";
+      allcomments.push(savedComment)
+    }
+    catch(err){
+      console.log("in the sendComment, post.jsx");
+      console.log(err);
+    }
+  }
+
 
   const deletePostHandler = async (e) =>{
     e.preventDefault()
@@ -34,6 +70,22 @@ export default function Post({post}) {
       console.log("in the deletePostHandler")
       console.log(err)
     }
+    finally{
+      setShowThreeDot(s=>!s);
+      setRefresh(s=>!s);
+    }
+  }
+
+  const likeHandler = async (e) =>{
+    e.preventDefault();
+    try{
+      const result = await callBackEnd(`/post/like/${post._id}`,{},token,"post");
+      setIsLiked(result.isLiked)
+    }
+    catch(err){
+      console.log("in the likeHandler");
+      console.log(err);
+    }
   }
 
   return (
@@ -43,7 +95,7 @@ export default function Post({post}) {
           <img src="/assets/dummyData/profileImage1.jpg" alt="profile picture" />
           <div className={styles["post-name-date"]}>
             <span>John Carter</span>
-            <span className={styles["post-time"]}>4 hours ago</span>
+            <span className={styles["post-time"]}>{format(post.createdAt)}</span>
           </div>
         </div>
         <div className={styles["post-three-dots"]}>
@@ -65,18 +117,18 @@ export default function Post({post}) {
           {post.desc}</p>
           
           {post.picture? 
-          <img src={`https://social-web-project.s3.us-east-2.amazonaws.com/${post.picture}`} 
+          <img src={`${S3Bucket}${post.picture}`} 
           alt="post image"/>
           : null }
       </div>
       <div className={styles["post-bottom-row"]}>
-          <div className={styles["post-icon-container"]}>
+          <div className={styles["post-icon-container"]} onClick={likeHandler}>
             <AiFillHeart className={`${styles['post-icons']} ${styles['heart-icons']}`} />
-            <span>1.2k</span>
+            <span>{post.liked.length + (liked? 1 : 0)}</span>
           </div>
-          <div className={styles["post-icon-container"]}>
+          <div className={styles["post-icon-container"]} onClick={getAllComments}>
             <FaCommentDots className={`${styles['post-icons']} ${styles['comment-icons']}`} />
-            <span>1.2k</span>
+            <span>{allcomments.length}</span>
           </div>
           <div className={styles["post-icon-container"]}>
             <BsFillShareFill className={`${styles['post-icons']} ${styles['share-icons']}`} />
@@ -102,9 +154,18 @@ export default function Post({post}) {
             </div>
           )}
           </div>
-          <button>send</button>
+          <button onClick={sendComment}>send</button>
       </div>
-      
+      {allcomments.length > 0? 
+        <div className={styles['post-comment-section']}>
+          {allcomments.map(comment=><Comment desc={comment.desc} userId={comment.userId} time={format(comment.createdAt)}/>)}
+          <div>
+          ▾ Load more comments
+          </div>
+        </div>
+        :
+        null
+      }
     </div>
   );
 }

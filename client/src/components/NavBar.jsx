@@ -3,10 +3,13 @@ import { BsSearch, BsBell, BsChatDots, BsPersonPlus } from "react-icons/bs";
 import styles from "./navbar.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 const backEndUrl = process.env.REACT_APP_BACKEND_URL;
+
+
 export default function NavBar() {
-  const { user } = useAuthContext();
+  const {user} =  useAuthContext();
   return (
     <>
+    {!user? null :
       <div className={styles["nav-bar-container"]}>
         <div className={styles["nav-bar-left"]}>
           <span>SocialWeb</span>
@@ -30,14 +33,11 @@ export default function NavBar() {
             <img
               src={
                 user.profilePic
-                  ? backEndUrl + user.profilePic
-                  : backEndUrl + "/images/genericProfile.png"
-              }
+                  ? `${process.env.REACT_APP_S3_LINK}${user.profilePic}` : `${process.env.REACT_APP_S3_LINK}genericProfile.png`}
               alt="profile picture"
             />
           </div>
         </div>
       </div>
-    </>
-  );
+    }</>);
 }

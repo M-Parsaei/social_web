@@ -5,12 +5,17 @@ const CommentSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    comment:{
+    postId:{
+        type: String,
+        required:true
+    },
+    desc:{
         type: String,
         required:true,
         min: [1,"comment can not be empty."]
-    }
-});
+    }},
+    {timestamps:true}
+);
 
 const Comment = mongoose.model("comment",CommentSchema);
 module.exports = Comment;

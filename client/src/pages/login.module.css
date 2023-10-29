@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;   
 }
-.login-left-part{
+.login-left-part,.register-left-part{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     flex: 1;
@@ -25,6 +25,20 @@
     height: 100%;
     background-color: #1a1c1ea9;
     backdrop-filter: blur(20px);
+}
+.register-left-part{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    display: flex;
+    flex-direction: column;
+}
+.register-left-part img{
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: 60%;
+    object-fit: cover;
 }
 .login-right-part{
     flex: 1;
@@ -78,7 +92,7 @@
     color: white;
     border: none;
 }
-.login-right-part-item-3 button{
+.login-right-part-item-3 button,.register-left-part span{
     background-color: #696969;
     border-radius: 20px;
     border: none;

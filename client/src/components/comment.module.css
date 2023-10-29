@@ -1,0 +1,31 @@
+.comment-container{
+    width: 100%;
+    padding: 10px 35px;
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.comment-profile-image{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.comment-information-container{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.comment-information-container span{
+    color: gray;
+    font-size: 12px;
+}
+.comment-container p{
+    padding-left: 35px;
+    font-size: 13px;
+}
+.comment-time-container{
+    display: flex;
+    flex-direction: column;
+}

@@ -5,8 +5,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
 import { DarkModeContextProvider } from "./context/DarkModeContext";
-
+import { ChakraBaseProvider,extendTheme } from "@chakra-ui/react";
 // TODO: refactoring ok - add comments later 
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
