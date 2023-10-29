@@ -3,6 +3,7 @@ const express  = require ("express");
 const mongoose = require ("mongoose");
 const AuthRouter = require("./routes/AuthRouters");
 const UserRouter = require("./routes/UserRouters");
+const CommentRouter = require("./routes/CommentRouters");
 const PostRouter = require("./routes/PostRouters");
 const UploadRouter = require("./routes/UploadRouters");
 const helmet = require("helmet");
@@ -31,6 +32,7 @@ app.use(express.static('public'));
 app.use('/user',authorizationContorller,UserRouter);
 app.use('/post',authorizationContorller,PostRouter)
 app.use('/upload',authorizationContorller,UploadRouter);
+app.use('/comment',authorizationContorller,CommentRouter);
 app.use('/',AuthRouter);
 app.use('*',(req,res)=>{
   res.status(404).json({error: "404 error"})

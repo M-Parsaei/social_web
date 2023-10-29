@@ -29,7 +29,6 @@ const authorizationContorller = async (req, res, next) => {
 const registerController = async (req, res, next) => {
   try {
     const { username, email, password, retypedPassword } = req.body;
-    console.log(passwordStrength("fuck9@A_"))
     if (!password){
       throw "Please provide a password"
     }

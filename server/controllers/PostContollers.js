@@ -32,10 +32,6 @@ module.exports.deletePost = async (req,res) =>{
         const post = await Post.findById(postId);
         const userId = req.body.userId;
         if (post.userId !== userId){
-            console.log("user id")
-            console.log(userId)
-            console.log("post user")
-            console.log(post.userId)
             throw "you are not allowed to remove this post";
         }
         if (!post){
