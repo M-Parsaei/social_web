@@ -29,10 +29,10 @@ app.use(express.static('public'));
 
 
 
-app.use('/user',authorizationContorller,UserRouter);
-app.use('/post',authorizationContorller,PostRouter)
+app.use('/user',UserRouter);
+app.use('/post',PostRouter)
 app.use('/upload',authorizationContorller,UploadRouter);
-app.use('/comment',authorizationContorller,CommentRouter);
+app.use('/comment',CommentRouter);
 app.use('/',AuthRouter);
 app.use('*',(req,res)=>{
   res.status(404).json({error: "404 error"})

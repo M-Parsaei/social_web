@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "./comment.module.css";
+import { useBackEnd } from "../hooks/useBackEnd";
+
 
 export default function Comment({ userId, desc, time }) {
-    const [user,setUser]=useState(null)
+  const [user, setUser] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
+  const {callBackEnd} = useBackEnd();
+
+
   useEffect(() => {
     // getting the user's name and profile pic
+    callBackEnd(`user/${userId}`,{},token)
   }, []);
   return (
     <div className={styles["comment-container"]}>

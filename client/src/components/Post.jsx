@@ -22,7 +22,7 @@ export default function Post({post,setRefresh}) {
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
   const [liked,setIsLiked]=useState(false);
-  const [allcomments,setAllComments]=useState(null);
+  const [allcomments,setAllComments]=useState([]);
 
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
@@ -32,14 +32,28 @@ export default function Post({post,setRefresh}) {
   const getAllComments = async(e)=>{
     e.preventDefault();
     try{
-      if (!allcomments){
-        setAllComments((await callBackEnd("comment/post/6530e40b5c58f83322ee982b",{},token,"get")).comments);
+      if (allcomments.length === 0){
+        setAllComments((await callBackEnd(`comment/post/${post._id}`,{},token,"get")).comments);
       }
       else{
-        setAllComments(null);
+        setAllComments([]);
       }
     }
     catch(err){
+      console.log(err);
+    }
+  }
+
+  const sendComment =  async (e)=>{
+    e.preventDefault();
+    console.log("in send comment handler ");
+    try{
+      const {savedComment} = await callBackEnd(`comment/create/${post._id}`,{desc:commentRef.current.value},token,"post");
+      commentRef.current.value="";
+      allcomments.push(savedComment)
+    }
+    catch(err){
+      console.log("in the sendComment, post.jsx");
       console.log(err);
     }
   }
@@ -113,7 +127,7 @@ export default function Post({post,setRefresh}) {
           </div>
           <div className={styles["post-icon-container"]} onClick={getAllComments}>
             <FaCommentDots className={`${styles['post-icons']} ${styles['comment-icons']}`} />
-            <span>1.2k</span>
+            <span>{allcomments.length}</span>
           </div>
           <div className={styles["post-icon-container"]}>
             <BsFillShareFill className={`${styles['post-icons']} ${styles['share-icons']}`} />
@@ -139,9 +153,9 @@ export default function Post({post,setRefresh}) {
             </div>
           )}
           </div>
-          <button>send</button>
+          <button onClick={sendComment}>send</button>
       </div>
-      {allcomments != null? 
+      {allcomments.length > 0? 
         <div className={styles['post-comment-section']}>
           {allcomments.map(comment=><Comment desc={comment.desc}/>)}
           <div>
