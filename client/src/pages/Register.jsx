@@ -67,7 +67,9 @@ export default function Register() {
           <div className={styles["register-left-part"]}>
             <img 
             src={profileImage? URL.createObjectURL(profileImage) : `${S3Bucket}genericProfile.png`}
-            alt="register profile picture"/>
+            alt="register"
+
+            />
             <label htmlFor="register-upload-image">
               <span>Pick your profile image</span>
               <input style={{display:"none"}} onClick={e=>{setProfileImage(e.target.files[0])}} type="file" id="register-upload-image" accept=".png,.jpeg,.jpg"/>
@@ -82,13 +84,13 @@ export default function Register() {
               onSubmit={RegisterSubmitHandler}
             >
               <span>Username</span>
-              <input type="text" ref={textInputRef}></input>
+              <input placeholder="Username" type="text" ref={textInputRef}></input>
               <span>Email</span>
-              <input type="email" ref={emailInputRef}></input>
+              <input placeholder="Email" type="email" ref={emailInputRef}></input>
               <span>Password</span>
-              <input type="password" ref={passwordInputRef}></input>
+              <input placeholder="Password" type="password" ref={passwordInputRef}></input>
               <span>Retype password</span>
-              <input type="password" ref={passwordCheckInputRef}></input>
+              <input placeholder="Retype Password" type="password" ref={passwordCheckInputRef}></input>
               <button type="submit">Sign Up</button>
             </form>
             <div className={styles["login-right-part-item-4"]}>

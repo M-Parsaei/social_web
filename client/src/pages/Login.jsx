@@ -5,6 +5,7 @@ import { useSignIn } from "../hooks/useSignIn";
 import { motion } from "framer-motion";
 import { logVariants } from "../animations/Variants";
 import ErrorAlert from "../components/ErrorAlert";
+import {Button, Input } from "@chakra-ui/react"
 
 export default function Login() {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -43,10 +44,13 @@ export default function Login() {
               onSubmit={loginSubmitHandler}
             >
               <span>Email</span>
-              <input type="email" ref={textInputRef}></input>
+              {/* <input type="email" ref={textInputRef}></input> */}
+              <Input type="text" ref={textInputRef} placeholder="Email" variant='filled' size='lg' />
               <span>Password</span>
-              <input type="password" ref={passwordInputRef}></input>
-              <button type="submit">Sign in</button>
+              {/* <input type="password" ref={passwordInputRef}></input> */}
+              <Input type="password" ref={passwordInputRef} placeholder="Password" variant='filled' size='lg' />
+              {/* <button type="submit">Sign in</button> */}
+              <Button color='red.400' size='lg' >Sign in</Button>
             </form>
             <div className={styles["login-right-part-item-4"]}>
             {error? <ErrorAlert error={error}/> : <div style={{flex:1}}/>}

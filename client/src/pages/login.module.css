@@ -46,7 +46,7 @@
     backdrop-filter: blur(20px);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +83,7 @@
 }
 .login-right-part-item-3 input{
     width: 100%;
-    height: 30px;
+    height: 60px;
     background-color: #2222227a;
     margin-top: 10px;
     outline: none;
@@ -91,17 +91,21 @@
     padding: 10px;
     color: white;
     border: none;
+    font-size: medium;
 }
 .login-right-part-item-3 button,.register-left-part span{
     background-color: #696969;
     border-radius: 20px;
     border: none;
     padding: 10px;
+    height: 40px;
     width: 150px;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: white;
+    color: whitesmoke;
     cursor: pointer;
+    font-size: medium;
+    font-weight: bolder;
 }
 .login-right-part-item-4 span{
     color: #696969;
