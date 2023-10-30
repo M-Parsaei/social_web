@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence,motion } from "framer-motion";
 import PageNotFound from "./pages/PageNotFound";
+import Background from "./pages/Background";
 
 // TODO: refactoring ok - add comments later 
 

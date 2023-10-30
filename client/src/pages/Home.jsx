@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { useBackEnd } from '../hooks/useBackEnd';
 import Share from "../components/Share";
 import { ChakraProvider } from "@chakra-ui/react";
+import Rightbar from "../components/Rightbar";
+import Background from "./Background";
 
 
 export default function Home() {
@@ -29,18 +31,18 @@ export default function Home() {
     func()
   },[refresh])
   return (
-    <div>
-      <NavBar />
+    <Background>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
-        <ProfileHeader/>
+        <NavBar />
         <div className={styles["profile-page-user-posts-container"]}>
           <Share setRefresh={setRefresh}/>
         {posts.map((post)=>{return<Post key={post._id} post={post} setRefresh={setRefresh}/>})}
         </div>
         </div>
+        <Rightbar/>
       </div>
-    </div>
+    </Background>
   );
 }

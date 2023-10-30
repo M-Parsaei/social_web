@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./post.module.css";
-import {AiFillHeart} from 'react-icons/ai';
-import {FaCommentDots} from 'react-icons/fa';
 import {PiSmileyFill} from "react-icons/pi";
 import {MdEdit, MdDelete} from "react-icons/md";
-import {BsThreeDotsVertical,BsFillShareFill} from "react-icons/bs";
+import {BsThreeDotsVertical,BsSuitHeart,BsBookmarkPlus} from "react-icons/bs";
+import {BiCommentDots} from "react-icons/bi";
 import EmojiPicker from 'emoji-picker-react';
 import { useBackEnd } from "../hooks/useBackEnd";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -113,56 +112,63 @@ export default function Post({post,setRefresh}) {
         </div>
       </div>
       <div className={styles["post-description"]}>
-        <p>
-          {post.desc}</p>
-          
-          {post.picture? 
+      {post.picture? 
           <img src={`${S3Bucket}${post.picture}`} 
           alt="post image"/>
           : null }
+        <p>
+          {post.desc}</p>
+        <div className={styles["post-tags"]}>
+            <span>#chevyvan#carseat#carparts#chevyvan</span>
+        </div>
       </div>
       <div className={styles["post-bottom-row"]}>
+          <div className={styles["post-buttons-left-side"]}>
           <div className={styles["post-icon-container"]} onClick={likeHandler}>
-            <AiFillHeart className={`${styles['post-icons']} ${styles['heart-icons']}`} />
+            <BsSuitHeart className={`${styles['post-icons']}`} />
             <span>{post.liked.length + (liked? 1 : 0)}</span>
           </div>
           <div className={styles["post-icon-container"]} onClick={getAllComments}>
-            <FaCommentDots className={`${styles['post-icons']} ${styles['comment-icons']}`} />
+            <BiCommentDots className={`${styles['post-icons']}`} />
             <span>{allcomments.length}</span>
           </div>
+          </div>
+          <div className={styles["post-buttons-right-side"]}>
           <div className={styles["post-icon-container"]}>
-            <BsFillShareFill className={`${styles['post-icons']} ${styles['share-icons']}`} />
-            <span>17</span>
+            <BsBookmarkPlus className={`${styles['post-icons']}`} />
           </div>
-      </div>
-      <div className={styles["line-breaker-post"]}></div>
-      <div className={styles["post-comment-part"]}>
-          <img src={null? null : backEndUrl + "/images/genericProfile.png"} alt="profile_image"/>
-          <input ref={commentRef} type="text" placeholder="Write your comment"></input>
-          <div className={styles["emoji-button-container"]}>
-          <div className={styles["emoji-button"]} onClick={() => setShowPicker((s)=>!s)}>
-                        <PiSmileyFill className={styles["emoji-icon"]}/>
           </div>
-          {showPicker && (
-            <div className={styles['emoji-picker-container']}>
-              <EmojiPicker height={200} width={350}
-               theme="dark"  lazyLoadEmojis={true}
-               searchDisabled={true}
-               skinTonesDisabled={true}
-               previewConfig={{showPreview: false}}
-              onEmojiClick={onEmojiClick} />
-            </div>
-          )}
-          </div>
-          <button onClick={sendComment}>send</button>
       </div>
       {allcomments.length > 0? 
+        <>
+        <div className={styles["line-breaker-post"]}></div>
+        <div className={styles["post-comment-part"]}>
+            <img src={null? null : backEndUrl + "/images/genericProfile.png"} alt="profile_image"/>
+            <input ref={commentRef} type="text" placeholder="Write your comment"></input>
+            <div className={styles["emoji-button-container"]}>
+            <div className={styles["emoji-button"]} onClick={() => setShowPicker((s)=>!s)}>
+                          <PiSmileyFill className={styles["emoji-icon"]}/>
+            </div>
+            {showPicker && (
+              <div className={styles['emoji-picker-container']}>
+                <EmojiPicker height={200} width={350}
+                 theme="dark"  lazyLoadEmojis={true}
+                 searchDisabled={true}
+                 skinTonesDisabled={true}
+                 previewConfig={{showPreview: false}}
+                onEmojiClick={onEmojiClick} />
+              </div>
+            )}
+            </div>
+            <button onClick={sendComment}>send</button>
+        </div>
         <div className={styles['post-comment-section']}>
           {allcomments.map(comment=><Comment desc={comment.desc} userId={comment.userId} time={format(comment.createdAt)}/>)}
           <div>
           ▾ Load more comments
           </div>
         </div>
+        </>
         :
         null
       }

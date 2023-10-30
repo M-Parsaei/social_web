@@ -6,6 +6,8 @@ import Post from "../components/Post";
 import { useEffect, useState } from "react";
 import { useBackEnd } from "../hooks/useBackEnd";
 import { useParams } from "react-router-dom";
+import Rightbar from "../components/Rightbar";
+import Background from "./Background";
 
 export default function Profile() {
   const { userId } = useParams();
@@ -39,14 +41,13 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
-      <NavBar/>
+    <Background>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
           {user? 
             <>
-            <ProfileHeader userProp={user}/>
+            <NavBar/>
             <div className={styles["profile-page-user-posts-container"]}>
             {posts.map((post) => {
               return <Post key={post._id} post={post} setRefresh={null} />;
@@ -57,7 +58,8 @@ export default function Profile() {
             null
           }
         </div>
+        <Rightbar/>
       </div>
-    </div>
+    </Background>
   );
 }

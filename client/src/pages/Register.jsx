@@ -6,6 +6,7 @@ import {motion} from "framer-motion";
 import { logVariants } from "../animations/Variants";
 import ErrorAlert from "../components/ErrorAlert";
 import { useBackEnd } from "../hooks/useBackEnd";
+import Background from "./Background";
 
 // TODO : add the code in RegisterSubmitHandler when retyped password is not same as password
 // and handling other errors like when the user was already registered, invalid email ....
@@ -58,6 +59,7 @@ export default function Register() {
   }
 
   return (
+    <Background>
     <motion.div>
       <div className={styles["login-page"]}>
         <motion.div variants={logVariants}
@@ -107,5 +109,6 @@ export default function Register() {
         </motion.div>
       </div>
     </motion.div>
+    </Background>
   );
 }

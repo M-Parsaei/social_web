@@ -2,6 +2,7 @@
 .page-container{
     display: flex;
     width: 100%;
+    z-index: 1;
 }
 .under-profile-header-container{
     margin-top: 170px;
@@ -9,13 +10,14 @@
 }
 .profile-right-container{
     display: flex;
-    flex: 4.5;
+    flex: 3;
     flex-direction: column;
-    align-items: center;
 }
 .profile-page-user-posts-container{
-    margin-top: 180px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
 }

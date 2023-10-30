@@ -1,71 +1,36 @@
-@import url("../variables.css");
 .nav-bar-container{
-    height: 60px;
-    width: 100%;
-    display: flex;
-    background-color: #1a1c1ea9;
-    backdrop-filter: blur(20px);
-    align-items: center;
-    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.244);
+    backdrop-filter: saturate(180%) blur(10px);
+    padding: 20px 0px;
     position: sticky;
     top: 0;
-    z-index: 4;
-    color: whitesmoke;
-}
-.nav-bar-left span{
-    font-size: 24px;
-    font-weight: 700;
-    margin-left: 50px;
-}
-.nav-bar-center{
-    width: 30%;
+    z-index: 2;
+    color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 100%;
-    justify-content: center;
+    width: 100%;
 }
 .nav-bar-search-container{
-    padding: 5px;
+    width: 80%;
+    height: 40px;
+    border-radius: 7px;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    width: 90%;
-    height: 60%;
-    border-radius: 5px;
-    border-bottom: #69696f solid 2px;
+    background-color: #34303e;
 }
 .nav-bar-react-icons{
-    color: #69696f;
-    font-size: 20px;
-}
-.nav-bar-center input{
-    color: white;
-    outline: none;
-    border: none;
     margin-left: 10px;
-    width: calc(100% - 30px);
+}
+.nav-bar-search-container input{
+    width: 80%;
+    color: white;
+    margin: 10px;
+    border: none;
     background: none;
 }
-.nav-bar-right{
-    color: whitesmoke;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-.nav-bar-icons > *{
-    margin-left: 15px;
-}
-.nav-bar-right img{
-    border-radius: 50%;
-    object-fit: cover;
-    width: 45px;
-    height: 45px;
-    margin-right: 20px;
-}
-.profile-info-nav{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.nav-user-name{
-    position: relative;
+.nav-bar-search-container input:focus{
+    outline: none;
+    background: none;
 }
