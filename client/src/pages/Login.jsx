@@ -50,7 +50,7 @@ export default function Login() {
               {/* <input type="password" ref={passwordInputRef}></input> */}
               <Input type="password" ref={passwordInputRef} placeholder="Password" variant='filled' size='lg' />
               {/* <button type="submit">Sign in</button> */}
-              <Button color='red.400' size='lg' >Sign in</Button>
+              <Button size='lg' >Sign in</Button>
             </form>
             <div className={styles["login-right-part-item-4"]}>
             {error? <ErrorAlert error={error}/> : <div style={{flex:1}}/>}
