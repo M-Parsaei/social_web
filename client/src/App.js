@@ -24,7 +24,8 @@ function App() {
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}></Route>
           <Route path="/profile/:userId" element={<Profile/>}></Route>
           <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
-      </Routes>
+          <Route path="*" element={<PageNotFound/>} />
+       </Routes>
     </AnimatePresence>
   );
 }

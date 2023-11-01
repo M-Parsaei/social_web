@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./comment.module.css";
 import { useBackEnd } from "../hooks/useBackEnd";
+import { Link } from "react-router-dom";
 
 
 export default function Comment({ userId, desc, time }) {
@@ -20,6 +21,7 @@ export default function Comment({ userId, desc, time }) {
   }, []);
   return (
     <div className={styles["comment-container"]}>
+      <Link to={`/profile/${userId}`}>
       <div className={styles["comment-information-container"]}>
         <img
           className={styles["comment-profile-image"]}
@@ -31,6 +33,7 @@ export default function Comment({ userId, desc, time }) {
           <span>{time}</span>
         </div>
       </div>
+      </Link>
       <p>{desc}</p>
     </div>
   );

@@ -5,11 +5,12 @@ import ProfileHeader from "../components/ProfileHeader";
 import Post from "../components/Post";
 import { useEffect, useState } from "react";
 import { useBackEnd } from "../hooks/useBackEnd";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rightbar from "../components/Rightbar";
 import Background from "./Background";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { userId } = useParams();
   console.log(userId);
   const [posts, setPosts] = useState([]);
@@ -33,6 +34,7 @@ export default function Profile() {
           return;
         }
       } catch (err) {
+        navigate("/404",{replace:true});
         console.log("in the use effect of Profile");
         console.log(err);
       }
