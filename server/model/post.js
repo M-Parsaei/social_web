@@ -17,6 +17,10 @@ const PostSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
+    commentNumber:{
+        type: Number,
+        default: 0
+    },
     picture:{
         type:String,
         default:""

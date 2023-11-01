@@ -21,7 +21,7 @@ export default function Post({post,setRefresh}) {
   const commentRef = useRef();
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
-  const [liked,setIsLiked]=useState(false);
+  const [likeNum,setLikeNum]=useState(post.liked.length);
   const [allcomments,setAllComments]=useState([]);
 
   const onEmojiClick = (chosenEmoji,event)=>{
@@ -76,10 +76,9 @@ export default function Post({post,setRefresh}) {
   }
 
   const likeHandler = async (e) =>{
-    e.preventDefault();
     try{
       const result = await callBackEnd(`/post/like/${post._id}`,{},token,"post");
-      setIsLiked(result.isLiked)
+      setLikeNum(result.likeNum);
     }
     catch(err){
       console.log("in the likeHandler");
@@ -126,7 +125,7 @@ export default function Post({post,setRefresh}) {
           <div className={styles["post-buttons-left-side"]}>
           <div className={styles["post-icon-container"]} onClick={likeHandler}>
             <BsSuitHeart className={`${styles['post-icons']}`} />
-            <span>{post.liked.length + (liked? 1 : 0)}</span>
+            <span>{likeNum}</span>
           </div>
           <div className={styles["post-icon-container"]} onClick={getAllComments}>
             <BiCommentDots className={`${styles['post-icons']}`} />
