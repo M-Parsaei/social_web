@@ -13,7 +13,10 @@ module.exports.createComment  = async (req,res,next)=>{
         }
         const comment = new Comment({userId,postId,desc});
         const savedComment = await comment.save();
-        res.status(200).json({savedComment});
+        const post = await Post.findById(postId);
+        post.commentNumber = post.commentNumber + 1;
+        post.save();
+        res.status(200).json({savedComment, commentNumber: post.commentNumber});
     }
     catch(error){
         error.name="";
@@ -26,14 +29,17 @@ module.exports.deleteComment = async (req,res,next) =>{
     const commentId = req.params.commentId;
     try{
         const comment = await Comment.findById(commentId);
-        if (!comment){
-            throw "no such a post exists";
+        const post = await Post.findById(comment.postId);
+        if (!comment || !post){
+            throw "no such a comment exists";
         }
         else if (comment.userId !== req.body.userId){
             throw "you are not allowed to delete a comment";
         }
         await comment.deleteOne();
-        res.status(200).json({comment});
+        post.commentNumber = post.commentNumber - 1;
+        post.save();
+        res.status(200).json({comment,commentNumber: post.commentNumber});
     }
     catch(error){
         error.name="";

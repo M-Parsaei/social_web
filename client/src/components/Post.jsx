@@ -22,7 +22,8 @@ export default function Post({post,setRefresh}) {
   const {user,token} = useAuthContext();
   const {callBackEnd} = useBackEnd();
   const [likeNum,setLikeNum]=useState(post.liked.length);
-  const [allcomments,setAllComments]=useState([]);
+  const [commmentNum,setCommmentNum]=useState(post.commentNumber);
+  const [allcomments,setAllComments]=useState(null);
 
   const onEmojiClick = (chosenEmoji,event)=>{
     commentRef.current.value = commentRef.current.value + chosenEmoji.emoji;
@@ -30,13 +31,13 @@ export default function Post({post,setRefresh}) {
   }
 
   const getAllComments = async(e)=>{
-    e.preventDefault();
     try{
-      if (allcomments.length === 0){
+      if (allcomments == null){
         setAllComments((await callBackEnd(`comment/post/${post._id}`,{},token,"get")).comments);
+        setCommmentNum(allcomments.length)
       }
       else{
-        setAllComments([]);
+        setAllComments(null);
       }
     }
     catch(err){
@@ -48,7 +49,8 @@ export default function Post({post,setRefresh}) {
     e.preventDefault();
     console.log("in send comment handler ");
     try{
-      const {savedComment} = await callBackEnd(`comment/create/${post._id}`,{desc:commentRef.current.value},token,"post");
+      const {savedComment,commentNumber} = await callBackEnd(`comment/create/${post._id}`,{desc:commentRef.current.value},token,"post");
+      setCommmentNum(commentNumber);
       commentRef.current.value="";
       allcomments.push(savedComment)
     }
@@ -129,7 +131,7 @@ export default function Post({post,setRefresh}) {
           </div>
           <div className={styles["post-icon-container"]} onClick={getAllComments}>
             <BiCommentDots className={`${styles['post-icons']}`} />
-            <span>{allcomments.length}</span>
+            <span>{commmentNum}</span>
           </div>
           </div>
           <div className={styles["post-buttons-right-side"]}>
@@ -138,7 +140,7 @@ export default function Post({post,setRefresh}) {
           </div>
           </div>
       </div>
-      {allcomments.length > 0? 
+      {allcomments != null? 
         <>
         <div className={styles["line-breaker-post"]}></div>
         <div className={styles["post-comment-part"]}>
