@@ -1,13 +1,11 @@
 import styles from "./Home.module.css";
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
-import ProfileHeader from "../components/ProfileHeader";
 import Post from "../components/Post";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
 import { useBackEnd } from '../hooks/useBackEnd';
 import Share from "../components/Share";
-import { ChakraProvider } from "@chakra-ui/react";
 import Rightbar from "../components/Rightbar";
 import Background from "./Background";
 

@@ -1,31 +1,39 @@
+@import url("../variables.css");
 .nav-bar-container{
-    background: rgba(0, 0, 0, 0.244);
-    backdrop-filter: saturate(180%) blur(10px);
-    padding: 20px 0px;
+    background: #17182b;
+    padding: 10px 20px;
     position: sticky;
     top: 0;
     z-index: 2;
-    color: white;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    color: #6e6f83;
     width: 100%;
 }
 .nav-bar-search-container{
-    width: 80%;
+    flex: 3;
     height: 40px;
     border-radius: 7px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: #34303e;
 }
-.nav-bar-react-icons{
-    margin-left: 10px;
+.nav-bar-right-side{
+    height: 100%;
+    display: flex;
+    gap: 40px;
+}
+.nav-bar-notification-icons{
+    display: flex;
+    height: 100%;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 .nav-bar-search-container input{
     width: 80%;
-    color: white;
+    color: #6e6f83;
     margin: 10px;
     border: none;
     background: none;
@@ -33,4 +41,17 @@
 .nav-bar-search-container input:focus{
     outline: none;
     background: none;
+}
+.nav-bar-user-container{
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.nav-bar-user-container img{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    object-fit: cover;
 }

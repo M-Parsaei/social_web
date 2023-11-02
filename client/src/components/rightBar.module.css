@@ -13,8 +13,7 @@
 }
 
 .sidebar-container{
-    background: rgba(0, 0, 0, 0.244);
-    backdrop-filter: saturate(180%) blur(10px);
+    background: #17182b;
     padding-left: 20px;
     z-index: 1;
     color: white;

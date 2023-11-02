@@ -8,16 +8,43 @@
     margin-top: 170px;
     display: flex;
 }
+/* fix the code above (remove them ?) */
 .profile-right-container{
     display: flex;
-    flex: 3;
+    flex: 5.5;
     flex-direction: column;
 }
+/* fix the code bellow for profile-page-user-posts-container (remove them ?) */
 .profile-page-user-posts-container{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* new css code */
+.profile-page-under-nav-container{
+    display: flex;
+}
+.profile-page-left-side-under-nav{
+    flex: 3.5;
+    padding: 20px 20px;
+}
+.profile-under-banner-container{
+    display: flex;
+    gap: 25px;
+}
+.profile-user-information-panel{
+    flex: 1;
+    margin-top: 40px;
+    background-color: beige;
+}
+.profile-user-posts{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
