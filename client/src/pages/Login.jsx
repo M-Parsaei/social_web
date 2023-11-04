@@ -32,8 +32,6 @@ export default function Login() {
           exit="exit"
           className={styles["login-container"]}
         >
-          <div className={styles["login-left-part"]}>
-          </div>
           <div className={styles["login-right-part"]}>
             <div className={styles["login-right-part-item-1"]}>
               <h2>Social web</h2>

@@ -13,6 +13,14 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tags:{
+        type: Array,
+        default: []
+    },
+    commentNumber:{
+        type: Number,
+        default: 0
+    },
     picture:{
         type:String,
         default:""

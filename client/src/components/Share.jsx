@@ -101,7 +101,7 @@ if(isLoading){
             : `${S3Bucket}genericProfile.png`} alt="profile_image"/>
             </div>
             <div className={styles["share-input-container"]}>
-            <textarea ref={postText} type="text" placeholder="What's in your mind?" contentEditable="true"/>
+            <input ref={postText} type="text" placeholder="What's in your mind?"/>
             </div>
         </div> 
         <div className={styles["share-line-breaker"]}></div>

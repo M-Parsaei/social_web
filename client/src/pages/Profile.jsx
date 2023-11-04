@@ -1,13 +1,16 @@
 import styles from "./Home.module.css";
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
-import ProfileHeader from "../components/ProfileHeader";
+import ProfileBanner from "../components/ProfileBanner";
 import Post from "../components/Post";
 import { useEffect, useState } from "react";
 import { useBackEnd } from "../hooks/useBackEnd";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Rightbar from "../components/Rightbar";
+import Background from "./Background";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const { userId } = useParams();
   console.log(userId);
   const [posts, setPosts] = useState([]);
@@ -31,6 +34,7 @@ export default function Profile() {
           return;
         }
       } catch (err) {
+        navigate("/404",{replace:true});
         console.log("in the use effect of Profile");
         console.log(err);
       }
@@ -39,25 +43,34 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
-      <NavBar/>
+    <Background>
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
-          {user? 
-            <>
-            <ProfileHeader userProp={user}/>
-            <div className={styles["profile-page-user-posts-container"]}>
-            {posts.map((post) => {
-              return <Post key={post._id} post={post} setRefresh={null} />;
-            })}
+          <NavBar/>
+          <div className={styles["profile-page-under-nav-container"]}>
+            <div className={styles["profile-page-left-side-under-nav"]}>
+            {user? 
+              <>
+              <ProfileBanner/>
+              <div className={styles["profile-under-banner-container"]}>
+                <div className={styles["profile-user-information-panel"]}>
+                </div>
+                <div className={styles["profile-user-posts"]}>
+                  {posts.map((post) => {
+                    return <Post key={post._id} post={post} setRefresh={null} />;
+                  })}
+                </div>
+              </div>
+              </>
+              :
+              null
+            }
             </div>
-            </>
-            :
-            null
-          }
+            <Rightbar/>
+          </div>
         </div>
       </div>
-    </div>
+    </Background>
   );
 }

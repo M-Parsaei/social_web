@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence,motion } from "framer-motion";
 import PageNotFound from "./pages/PageNotFound";
+import Background from "./pages/Background";
 
 // TODO: refactoring ok - add comments later 
 
@@ -23,7 +24,8 @@ function App() {
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}></Route>
           <Route path="/profile/:userId" element={<Profile/>}></Route>
           <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
-      </Routes>
+          <Route path="*" element={<PageNotFound/>} />
+       </Routes>
     </AnimatePresence>
   );
 }

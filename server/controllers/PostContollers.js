@@ -99,7 +99,7 @@ module.exports.likePost = async (req,res) =>{
             post.liked.push(userId);
         }
         await post.save();
-        res.status(200).json({isLiked});
+        res.status(200).json({isLiked,likeNum: post.liked.length});
     }
     catch(err){
         err.name=""

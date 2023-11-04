@@ -1,14 +1,16 @@
 @import url("../variables.css");
 .post-container{
-    background-color: #161718;
+    background: rgba(23, 24, 43, 0.892);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    -webkit-box-shadow: 0px 0px 38px -5px rgba(0,0,0,0.49);
-    -moz-box-shadow: 0px 0px 38px -5px rgba(0,0,0,0.49);
-    box-shadow: 0px 0px 38px -5px rgba(0,0,0,0.49);
+    -webkit-box-shadow: 0px 0px 38px -5px rgba(41, 41, 41, 0.49);
+    -moz-box-shadow: 0px 0px 38px -5px rgba(34, 34, 34, 0.49);
+    box-shadow: 0px 0px 38px -5px rgba(31, 31, 31, 0.49);
     border-radius: 7px;
     color: white;
-    width: 600px;
+    width: 100%;
+    max-width: 650px;
     margin-top: 40px;
 }
 .post-top-row{
@@ -27,6 +29,11 @@
     font-size: 13px;
     font-weight: 100;
 }
+.post-tags{
+    color: #436cf6;
+    align-self: flex-start;
+    margin: 10px 0px;
+}
 .post-profile-info img{
     width: 45px;
     height: 45px;
@@ -37,10 +44,11 @@
     width: 100%;
 }
 .post-description img{
-    margin-top: 10px;
+    margin: 10px 0px;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     height: auto;
+    object-fit: cover;
     max-height: 300px;
 }
 .post-name-date{
@@ -57,11 +65,15 @@
 
 .post-bottom-row{
     width: 100%;
-    padding: 15px 25px 15px 25px;
+    padding: 15px 35px 15px 35px;
     display: flex;
     justify-content:space-between;
     align-items: center;
-    font-size: 15px;
+    font-size: 16px;
+}
+.post-buttons-left-side{
+    display: flex;
+    gap: 30px;
 }
 .post-icon-container{
     cursor: pointer;
@@ -70,16 +82,10 @@
     justify-content: center;
 }
 .post-icon-container{
-    gap: 3px
+    gap: 10px
 }
-.heart-icons{
-    color: rgb(77, 0, 0);
-}
-.comment-icons{
-    color: rgb(0, 7, 84);
-}
-.share-icons{
-    color: rgb(150, 70, 0);
+.post-icon{
+    color: white;
 }
 .post-comment-part{
     display: flex;

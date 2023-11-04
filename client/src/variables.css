@@ -1,5 +1,4 @@
 :root{
-    --blue-color: rgb(21, 0, 114);
-    --grey-color: #696969;
-    --background-color: #100f12;
+    --grey-text-color: #6e6f83,
+    --blue-theme-color: #17182b
 }
