@@ -1,7 +1,7 @@
 @import url("../variables.css");
 .post-container{
-    background: rgba(7, 7, 7, 0.455);
-    backdrop-filter: saturate(180%) blur(10px);
+    background: rgba(23, 24, 43, 0.892);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     -webkit-box-shadow: 0px 0px 38px -5px rgba(41, 41, 41, 0.49);

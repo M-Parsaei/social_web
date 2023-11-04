@@ -10,13 +10,8 @@ import { listItemVariant } from '../animations/Variants';
 import {useSignOut} from "../hooks/useSignOut"
 import { useDarkModeContext } from '../hooks/useDarkModeContext';
 
-const Sidebar = () => {
-    const signOut = useSignOut();
-    const {dispatch} = useDarkModeContext();
-    const [isSeeMore,setIsSeeMore] = useState(false)
-    return (
-    <div className={styles["sidebar-container"]}>
-        <div className={styles["sidebar-user-container"]}>
+/*
+<div className={styles["sidebar-user-container"]}>
             <img className={styles["sidebar-profile-image"]} src="/assets/dummyData/profileImage1.jpg"/>
             <span>Tim Chihall</span>
             <span>Burnaby Canada</span>
@@ -35,6 +30,14 @@ const Sidebar = () => {
                 </div>
             </div>
         </div>
+        */
+const Sidebar = () => {
+    const signOut = useSignOut();
+    const {dispatch} = useDarkModeContext();
+    const [isSeeMore,setIsSeeMore] = useState(false)
+    return (
+    <div className={styles["sidebar-container"]}>
+        
         <div className={styles["sidebar-dashed-divider"]}/>
         <ul className={styles["sidebar-list-container"]}>
             <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
@@ -86,35 +89,7 @@ const Sidebar = () => {
                 </span>
             </motion.li>
         </ul>  
-        <div className={styles["sidebar-dashed-divider"]}/>
-        <h3>Contacts:</h3>
-        <div className={styles["sidebar-contact-container"]}>
-            <div className={styles["contact-user"]}>
-                <img src="/assets/dummyData/profileImage1.jpg"/>
-                <div className={styles["contact-text-information"]}>
-                    <p>Julia Mauro</p>
-                    <span>Detroit, United State</span>
-                </div>
-                <BsChatLeftTextFill className={styles["contact-chat-icon"]}/>
-            </div>
-            <div className={styles["contact-user"]}>
-                <img src="/assets/dummyData/profileImage1.jpg"/>
-                <div className={styles["contact-text-information"]}>
-                    <p>Julia Mauro</p>
-                    <span>Detroit, United State</span>
-                </div>
-                <BsChatLeftTextFill className={styles["contact-chat-icon"]}/>
-            </div>
-            <div className={styles["contact-user"]}>
-                <img src="/assets/dummyData/profileImage1.jpg"/>
-                <div className={styles["contact-text-information"]}>
-                    <p>Julia Mauro</p>
-                    <span>Detroit, United State</span>
-                </div>
-                <BsChatLeftTextFill className={styles["contact-chat-icon"]}/>
-            </div>
-            <span style={{alignSelf:'center',color:'#436cf6',cursor:'pointer'}}>View All</span>
-        </div>
+        
     </div>
   )
 }

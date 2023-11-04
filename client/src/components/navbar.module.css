@@ -1,6 +1,7 @@
 @import url("../variables.css");
 .nav-bar-container{
-    background: #17182b;
+    background: rgba(23, 24, 43, 0.808);
+    backdrop-filter: blur(10px);
     padding: 10px 20px;
     position: sticky;
     top: 0;
