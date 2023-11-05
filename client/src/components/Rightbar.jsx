@@ -4,7 +4,7 @@ import {BsChatLeftTextFill} from "react-icons/bs";
 import {MdOutlineSaveAlt,MdDarkMode} from "react-icons/md";
 import {FaUserFriends} from "react-icons/fa";
 import {IoIosSettings,IoMdExit} from "react-icons/io"
-import styles from "./Sidebar.module.css";
+import styles from "./rightBar.module.css";
 import { motion } from "framer-motion";
 import { listItemVariant } from '../animations/Variants';
 import {useSignOut} from "../hooks/useSignOut"
@@ -16,7 +16,6 @@ const Rightbar = () => {
     const [isSeeMore,setIsSeeMore] = useState(false)
     return (
     <div className={styles["sidebar-container"]}>
-        <div className={styles["sidebar-dashed-divider"]}/>
         <h3>Friend Request</h3>
         <div className={styles["sidebar-contact-container"]}>
             <div className={styles["contact-user"]}>
@@ -73,6 +72,7 @@ const Rightbar = () => {
             </div>
             <span style={{alignSelf:'center',color:'#436cf6',cursor:'pointer'}}>View All</span>
         </div>
+        <div className={styles["sidebar-dashed-divider"]}/>
     </div>
   )
 }

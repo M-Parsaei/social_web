@@ -37,9 +37,13 @@
     gap: 25px;
 }
 .profile-user-information-panel{
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    align-self: flex-start;
+    top: 90px;
+    left: 0px;
     flex: 1;
     margin-top: 40px;
-    background-color: beige;
 }
 .profile-user-posts{
     flex: 2;

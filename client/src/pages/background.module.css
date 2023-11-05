@@ -5,11 +5,12 @@
     top: 0;
     left: 0;
     z-index: -10;
-    background: #d7d7d7;
+    background: rgb(207, 207, 207);
     overflow-x: hidden;
     --component_color: rgba(207, 207, 207, 0.582);
     --text_color: black;
-    --subtext_color: rgb(32, 32, 32);
+    --subtext_color: rgb(31, 31, 31);
+    --secondary_color: rgb(14, 121, 171);
 }
 .dark-background {
     position: fixed;
@@ -18,11 +19,17 @@
     top: 0;
     left: 0;
     z-index: -10;
-    background: #252a3b;
+    background: #1c1c1c;
     overflow-x: hidden;
-    --component_color: rgba(23, 24, 43, 0.892);
+    --component_color: rgba(21, 21, 21, 0.892);
     --text_color: white;
     --subtext_color: rgb(208, 208, 208);
+    --secondary_color: rgb(14, 121, 171);
 }
 
+/* 
+    background: #252a3b;
+
+    --component_color: rgba(23, 24, 43, 0.892);
+*/
 

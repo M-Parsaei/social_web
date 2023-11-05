@@ -9,6 +9,7 @@ const s3_Link = process.env.REACT_APP_S3_LINK;
 export default function NavBar() {
   const { user } = useAuthContext();
   return (
+    !user? null : 
     <div className={styles["nav-bar-container"]}>
       <div className={styles["nav-bar-search-container"]}>
         <BsSearch className={styles["nav-bar-react-icons"]} />
