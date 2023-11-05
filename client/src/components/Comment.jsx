@@ -3,6 +3,7 @@ import styles from "./comment.module.css";
 import { useBackEnd } from "../hooks/useBackEnd";
 import { Link } from "react-router-dom";
 
+const S3Bucket = process.env.REACT_APP_S3_LINK;
 
 export default function Comment({ userId, desc, time }) {
   const [user, setUser] = useState(null);
@@ -25,7 +26,11 @@ export default function Comment({ userId, desc, time }) {
       <div className={styles["comment-information-container"]}>
         <img
           className={styles["comment-profile-image"]}
-          src="/assets/dummyData/profileImage1.jpg"
+          src={
+            profile
+              ? `${S3Bucket}${profile}`
+              : `${S3Bucket}genericProfile.png`
+          }
           alt="profile picture"
         />
         <div className={styles["comment-time-container"]}>

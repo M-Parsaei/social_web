@@ -58,7 +58,7 @@ export default function Profile() {
                 </div>
                 <div className={styles["profile-user-posts"]}>
                   {posts.map((post) => {
-                    return <Post key={post._id} post={post} setRefresh={null} />;
+                    return <Post key={post._id} postAuthor={user} post={post} setRefresh={null} />;
                   })}
                 </div>
               </div>
