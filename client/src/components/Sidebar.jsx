@@ -9,67 +9,73 @@ import { motion } from "framer-motion";
 import { listItemVariant } from '../animations/Variants';
 import {useSignOut} from "../hooks/useSignOut"
 import { useDarkModeContext } from '../hooks/useDarkModeContext';
+import {Link, useNavigate} from "react-router-dom"
+import { useAuthContext } from '../hooks/useAuthContext';
 
 
-const Sidebar = () => {
+const Sidebar = ({userId}) => {
     const signOut = useSignOut();
     const{dispatch} =useDarkModeContext();
-    const [isSeeMore,setIsSeeMore] = useState(false)
+    const [isSeeMore,setIsSeeMore] = useState(false);
+    const navigate = useNavigate();
+    const {user} = useAuthContext();
     return (
     <div className={styles["sidebar-container"]}>
-        
-        <div className={styles["sidebar-dashed-divider"]}/>
+        {user? 
+        <>
         <ul className={styles["sidebar-list-container"]}>
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            <li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-one"]}`}>
                     <AiFillHome className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
-                    Home
+                <Link style={{color:"inherit",textDecoration:"none"}} to={`/`}>Home</Link>
                 </span>
-            </motion.li>
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            </li>
+            <li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-two"]}`}>
                     <IoIosSettings  className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
-                    Profile
+                    <Link style={{color:"inherit",textDecoration:"none"}} to={`/profile/${user._id}`}>Profile</Link>
                 </span>
-            </motion.li>
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            </li>
+            <li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-four"]}`}>
                     <FaUserFriends className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
                     Chat
                 </span>
-            </motion.li>
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            </li>
+            <li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-five"]}`}>
                     <MdOutlineSaveAlt className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
                     Bookmarks
                 </span>
-            </motion.li>
-            <motion.li onClick={(e)=>{dispatch({type:"toggle"})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            </li>
+            <li onClick={()=>{dispatch({type:"toggle"})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-seven"]}`}>
                     <MdDarkMode className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
                     Theme
                 </span>
-            </motion.li>
-            <motion.li onClick={(e)=>{e.preventDefault(); signOut()}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            </li>
+            <li onClick={()=>{signOut();navigate("/login",{replace:true})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-eight"]}`}>
                     <IoMdExit className={styles["sidebar-icons"]}/>
                 </div>
                 <span>
                     Log Out
                 </span>
-            </motion.li>
+            </li>
         </ul>  
-        
+        <div className={styles["sidebar-dashed-divider"]}/>
+        </>
+    : null}
     </div>
   )
 }

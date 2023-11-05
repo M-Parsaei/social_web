@@ -22,7 +22,7 @@ function App() {
       <Routes location={location} key={location.key}>
           <Route path="/register" element={!user? <Register /> : <Profile/>}></Route>
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}></Route>
-          <Route path="/profile/:userId" element={<Profile/>}></Route>
+          <Route path="/profile/:userId" element={user? <Profile/> : <Register/>}></Route>
           <Route path="/" element={user ? <Home /> : <Navigate to="/login" />}></Route>
           <Route path="*" element={<PageNotFound/>} />
        </Routes>

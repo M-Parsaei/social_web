@@ -7,6 +7,14 @@
     color: var(--text_color);
     flex-direction: column;
 }
+.profile-banner-username{
+    color: white;
+    position: absolute;
+    top: -60px;
+    font-size: 24px;
+    font-weight: bold;
+    left: 220px;
+}
 .profile-banner-picture{
     width: 100%;
     height: auto;

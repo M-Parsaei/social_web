@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <Background>
       <div className={styles["page-container"]}>
-        <Sidebar />
+        <Sidebar userId={user._id} />
         <div className={styles["profile-right-container"]}>
         <NavBar/>
         <div className={styles["profile-page-user-posts-container"]}>
