@@ -4,6 +4,7 @@ import { GoMail } from "react-icons/go";
 import styles from "./navbar.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 const backEndUrl = process.env.REACT_APP_BACKEND_URL;
+const s3_Link = process.env.REACT_APP_S3_LINK;
 
 export default function NavBar() {
   const { user } = useAuthContext();
@@ -19,9 +20,9 @@ export default function NavBar() {
           <GoMail className={styles["nav-bar-react-icons"]} />
         </div>
         <div className={styles["nav-bar-user-container"]}>
-          <span>Gurkirat Arora</span>
+          <span>{user.username}</span>
           <img
-            src="/assets/dummyData/profileImage1.jpg"
+            src= {user.profilePic? `${s3_Link}${user.profilePic}` : `${s3_Link}genericProfile.png`}
             alt="profile picture"
           />
           <span>▾</span>
