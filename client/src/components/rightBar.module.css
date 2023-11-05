@@ -1,5 +1,6 @@
 @import url("../variables.css");
 
+
 .sidebar-dashed-divider{
     margin: 15px 0px;
     width: 90%;
@@ -14,16 +15,24 @@
 
 .sidebar-container{
     background: var(--component_color);
-    padding-left: 20px;
-    z-index: 1;
     color: var(--text_color);
-    height: calc(100vh);
+    padding-left: 5px;
+    /*backdrop-filter: blur(20px);*/
+    z-index: 1;
+    /*overflow-y: scroll;*/
+    height: calc(100vh - 70px);
     flex: 1;
     position: sticky;
-    top: 0px;
+    top: 70px;
     display: flex;
     flex-direction: column;
 }
+
+.sidebar-container h3{
+    color: var(--secondary_color);
+}
+
+
 .sidebar-contact-container{
     display: flex;
     flex-direction: column;
@@ -48,5 +57,4 @@
 }
 .contact-text-information span{
     font-size: 12px;
-    color: grey;
 }

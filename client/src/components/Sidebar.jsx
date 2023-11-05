@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {AiFillHome} from "react-icons/ai";
-import {BsChatLeftTextFill} from "react-icons/bs";
+import {BsSun} from "react-icons/bs";
 import {MdOutlineSaveAlt,MdDarkMode} from "react-icons/md";
 import {FaUserFriends} from "react-icons/fa";
 import {IoIosSettings,IoMdExit} from "react-icons/io"
@@ -15,7 +15,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 const Sidebar = ({userId}) => {
     const signOut = useSignOut();
-    const{dispatch} =useDarkModeContext();
+    const{state,dispatch} =useDarkModeContext();
     const [isSeeMore,setIsSeeMore] = useState(false);
     const navigate = useNavigate();
     const {user} = useAuthContext();
@@ -23,6 +23,9 @@ const Sidebar = ({userId}) => {
     <div className={styles["sidebar-container"]}>
         {user? 
         <>
+        <div className={styles["sidebar-website-name"]}>
+            <h2>Social Chat</h2>
+        </div>
         <ul className={styles["sidebar-list-container"]}>
             <li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-one"]}`}>
@@ -58,10 +61,10 @@ const Sidebar = ({userId}) => {
             </li>
             <li onClick={()=>{dispatch({type:"toggle"})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-seven"]}`}>
-                    <MdDarkMode className={styles["sidebar-icons"]}/>
+                    {state? <BsSun className={styles["sidebar-icons"]}/> : <MdDarkMode className={styles["sidebar-icons"]}/>  } 
                 </div>
                 <span>
-                    Theme
+                    {state?  "Bright Mode" :"Dark Mode"  } 
                 </span>
             </li>
             <li onClick={()=>{signOut();navigate("/login",{replace:true})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>

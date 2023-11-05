@@ -2,8 +2,9 @@
 .nav-bar-container{
     background: var(--component_color);
     backdrop-filter: blur(10px);
-    padding: 10px 20px;
     position: sticky;
+    height: 70px;
+    padding: 0px 20px;
     top: 0;
     z-index: 2;
     display: flex;

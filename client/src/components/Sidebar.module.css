@@ -77,6 +77,14 @@
 .sidebar-icons{
     font-size: 15px;
 }
+.sidebar-website-name{
+    color: var(--secondary_color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
 /*
 .item-one{
     border: #bfdecf91 solid 2px ;
