@@ -1,6 +1,6 @@
 @import url("../variables.css");
 .nav-bar-container{
-    background: rgba(23, 24, 43, 0.808);
+    background: var(--component_color);
     backdrop-filter: blur(10px);
     padding: 10px 20px;
     position: sticky;
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #6e6f83;
+    color: var(--text_color);
     width: 100%;
 }
 .nav-bar-search-container{
@@ -34,7 +34,7 @@
 }
 .nav-bar-search-container input{
     width: 80%;
-    color: #6e6f83;
+    color: var(--text_color);
     margin: 10px;
     border: none;
     background: none;

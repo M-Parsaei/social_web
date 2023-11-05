@@ -1,4 +1,17 @@
-.background {
+.bright-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    background: #d7d7d7;
+    overflow-x: hidden;
+    --component_color: rgba(207, 207, 207, 0.582);
+    --text_color: black;
+    --subtext_color: rgb(32, 32, 32);
+}
+.dark-background {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -6,7 +19,10 @@
     left: 0;
     z-index: -10;
     background: #252a3b;
-    overflow: hidden;
+    overflow-x: hidden;
+    --component_color: rgba(23, 24, 43, 0.892);
+    --text_color: white;
+    --subtext_color: rgb(208, 208, 208);
 }
 
 
