@@ -10,30 +10,10 @@ import { listItemVariant } from '../animations/Variants';
 import {useSignOut} from "../hooks/useSignOut"
 import { useDarkModeContext } from '../hooks/useDarkModeContext';
 
-/*
-<div className={styles["sidebar-user-container"]}>
-            <img className={styles["sidebar-profile-image"]} src="/assets/dummyData/profileImage1.jpg"/>
-            <span>Tim Chihall</span>
-            <span>Burnaby Canada</span>
-            <div className={styles["sidebar-user-stats"]}>
-                <div className={styles["sidebar-user-stats-column"]}>
-                <span>368</span>
-                <span>Post</span>
-                </div>
-                <div className={styles["sidebar-user-stats-column"]}>
-                <span>184.K</span>
-                <span>Followers</span>
-                </div>
-                <div className={styles["sidebar-user-stats-column"]}>
-                <span>6M</span>
-                <span>Following</span>
-                </div>
-            </div>
-        </div>
-        */
+
 const Sidebar = () => {
     const signOut = useSignOut();
-    const {dispatch} = useDarkModeContext();
+    const{dispatch} =useDarkModeContext();
     const [isSeeMore,setIsSeeMore] = useState(false)
     return (
     <div className={styles["sidebar-container"]}>
@@ -72,7 +52,7 @@ const Sidebar = () => {
                     Bookmarks
                 </span>
             </motion.li>
-            <motion.li onClick={(e)=>{e.preventDefault();dispatch("toggle")}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
+            <motion.li onClick={(e)=>{dispatch({type:"toggle"})}} variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-seven"]}`}>
                     <MdDarkMode className={styles["sidebar-icons"]}/>
                 </div>
@@ -96,28 +76,3 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-/*
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
-                <div className={`${styles["sidebar-icon-container"]} ${styles["item-three"]}`}>
-                    <MdGroups className={styles["sidebar-icons"]}/>
-                </div>
-                <span>
-                    Following
-                </span>
-            </motion.li>
-            <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
-                <div className={`${styles["sidebar-icon-container"]} ${styles["item-three"]}`}>
-                    <MdGroups className={styles["sidebar-icons"]}/>
-                </div>
-                <span>
-                    Followers
-                </span>
-            </motion.li>
-                        <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
-                <div className={`${styles["sidebar-icon-container"]} ${styles["item-six"]}`}>
-                    <FaStar className={styles["sidebar-icons"]}/>
-                </div>
-                <span>
-                    Favorites
-                </span>
-            </motion.li>*/

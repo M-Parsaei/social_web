@@ -13,11 +13,10 @@
 }
 
 .sidebar-container{
-    background: rgba(23, 24, 43, 0.808);
-    backdrop-filter: blur(10px);
+    background: var(--component_color);
     padding-left: 20px;
     z-index: 1;
-    color: white;
+    color: var(--text_color);
     height: calc(100vh);
     flex: 1;
     position: sticky;

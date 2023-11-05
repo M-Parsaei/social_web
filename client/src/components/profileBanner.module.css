@@ -1,6 +1,10 @@
 .profile-banner-container{
     display: flex;
-    background-color: #17182b;
+    background: var(--component_color);
+    -webkit-box-shadow: 0px 0px 15px -5px rgba(31, 31, 31, 0.351);
+    -moz-box-shadow: 0px 0px 15px -5px rgba(31, 31, 31, 0.351);
+    box-shadow: 0px 0px 15px -5px rgba(31, 31, 31, 0.351);
+    color: var(--text_color);
     flex-direction: column;
 }
 .profile-banner-picture{
@@ -24,7 +28,7 @@
     margin-left: 30px;
     width: 170px;
     height: 170px;
-    border: black solid 5px;
+    border: var(--component_color) solid 5px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -32,7 +36,7 @@
     height: 100%;
     background: none;
     border: none;
-    color: #6e6f83;
+    color: var(--subtext_color);
     font-size: 16px;
     padding: 0px 20px;
 }

@@ -8,6 +8,7 @@ import { useBackEnd } from '../hooks/useBackEnd';
 import Share from "../components/Share";
 import Rightbar from "../components/Rightbar";
 import Background from "./Background";
+import { useDarkModeContext } from "../hooks/useDarkModeContext";
 
 
 export default function Home() {
@@ -33,10 +34,10 @@ export default function Home() {
       <div className={styles["page-container"]}>
         <Sidebar />
         <div className={styles["profile-right-container"]}>
-        <NavBar />
+        <NavBar/>
         <div className={styles["profile-page-user-posts-container"]}>
           <Share setRefresh={setRefresh}/>
-        {posts.map((post)=>{return<Post key={post._id} post={post} setRefresh={setRefresh}/>})}
+        {posts.map((post)=>{return<Post key={post._id} postAuthor={user} post={post} setRefresh={setRefresh}/>})}
         </div>
         </div>
         <Rightbar/>
