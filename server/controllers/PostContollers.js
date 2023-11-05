@@ -15,10 +15,13 @@ module.exports.createPost = async (req,res) =>{
 module.exports.getPost = async (req,res) =>{
     try{
         const postId = req.params.postId;
-        const post = await Post.findById(postId);
+        let post = await Post.findById(postId);
+        const user = await User.findById(post.userId);
         if (!post){
             throw "no such a post was found";
         }
+        post = {...post, profilePic:user.profilePic, username: user.username}
+        console.log(post);
         res.status(200).json({post});
     }
     catch(err){
@@ -51,6 +54,7 @@ module.exports.updatePost = (req,res) =>{
 module.exports.getAllPosts = async (req,res)=>{
     try{
         const userId = req.params.userId;
+        
         /*
         const user = await User.findById(userId);
         if (!user){
