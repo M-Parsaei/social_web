@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { listItemVariant } from '../animations/Variants';
 import {useSignOut} from "../hooks/useSignOut"
 import { useDarkModeContext } from '../hooks/useDarkModeContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 /*
 <div className={styles["sidebar-user-container"]}>
@@ -32,7 +34,9 @@ import { useDarkModeContext } from '../hooks/useDarkModeContext';
         </div>
         */
 const Sidebar = () => {
+    const navigate = useNavigate();
     const signOut = useSignOut();
+    const {user} = useAuthContext();
     const {dispatch} = useDarkModeContext();
     const [isSeeMore,setIsSeeMore] = useState(false)
     return (
@@ -52,9 +56,8 @@ const Sidebar = () => {
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-two"]}`}>
                     <IoIosSettings  className={styles["sidebar-icons"]}/>
                 </div>
-                <span>
-                    Profile
-                </span>
+                <span onClick={() => navigate(`/profile/${user._id}`)}>Profile</span>
+
             </motion.li>
             <motion.li variants={listItemVariant} whileHover="onHover" className={styles["sidebar-item"]}>
                 <div className={`${styles["sidebar-icon-container"]} ${styles["item-four"]}`}>

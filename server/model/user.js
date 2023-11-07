@@ -41,7 +41,27 @@ const UserSchema = new mongoose.Schema({
     status:{
         type: Boolean,
         default: false
-    }},
+    },
+    gender: {
+        type: String,
+        enum: ['male', 'female'],
+      },
+      birthdate: {
+        type: Number, 
+        default: null
+      },
+      birthmonth: {
+        type: Number, 
+        default: null
+      },
+      birthyear:{
+        type: Number, 
+        default: null
+      },
+      location:{
+        type: String,
+        default: null
+      }},
     {timestamps:true}
 );
 
